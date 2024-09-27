@@ -10,7 +10,7 @@
         </material>
 
         <material name="red">
-                <color rgba="1 0.5 0.5 1" />
+                <color rgba="1 0 0 1" />
         </material>
 
         <!--LINKS-->
@@ -138,6 +138,44 @@
                         <material name="white" />
                 </visual>
         </link>
+        <link name="j5_bearing_adapter_1">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/forearm/j5_bearing_adapter.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="-0.023 0.011 0.10525" rpy="1.5708 1.5708 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="j5_bearing_adapter_2">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/forearm/j5_bearing_adapter.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0.023 -0.011 0.09525" rpy="-1.5708 1.5708 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="j6_housing">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/forearm/j6_housing.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="-0.01385 -0.01085 -0.02" rpy="0 0 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+
+        <!--end effector-->
+        <link name="j6_nema8">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/forearm/j6_nema8.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0 0 0" rpy="0 0 0" />
+                        <material name="red" />
+                </visual>
+        </link>
 
         <!--JOINTS-->
         <!--stand joints-->
@@ -219,5 +257,30 @@
                 <limit lower="-3.1415" upper="1.5708" effort="10" velocity="3"/>
                 <axis xyz="0 0 1"/>
         </joint>
- 
+        <joint name="fore_rotation_bearing_1" type="fixed">
+                <parent link="fore_rotation" />
+                <child link="j5_bearing_adapter_1" />
+                <origin xyz="0 0 0.01" rpy="0 0 0" />
+        </joint>
+        <joint name="fore_rotation_bearing_2" type="fixed">
+                <parent link="fore_rotation" />
+                <child link="j5_bearing_adapter_2" />
+                <origin xyz="0 0 0.02" rpy="0 0 0" />
+        </joint>
+
+        <!--J5-->
+        <joint name="J5" type="revolute">
+                <parent link="j5_bearing_adapter_1"/>
+                <child link="j6_housing"/>
+                <origin xyz="0 0 0.0925" rpy="0 0 0" />
+                <limit lower="-3.1415" upper="1.5708" effort="10" velocity="3"/>
+                <axis xyz="1 0 0"/>
+        </joint>
+
+        <!--end effector joints-->
+        <joint name="J6" type="fixed">
+                <parent link="j6_housing"/>
+                <child link="j6_nema8"/>
+                <origin xyz="0 0 0.0078" rpy="0 0 0" />
+        </joint>
 </robot>

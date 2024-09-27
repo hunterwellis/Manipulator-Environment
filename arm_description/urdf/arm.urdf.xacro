@@ -1,27 +1,359 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_arm">
-  
-  <!-- Common Properties -->
-  <xacro:property name="mass" value="1.0" />
-  <xacro:property name="color" value="1 1 1 1" /> <!-- White color -->
+<robot name="arm" xmlns:xacro="https://ros.org/wiki/xacro">
 
-  <!-- Material Definition -->
-  <material name="white">
-    <color rgba="1.0 1.0 1.0 1.0"/>
-  </material>
-
-  <!-- Base Link -->
-  <link name="mounting_plate">
-    <visual>
-        <geometry>
-            <mesh filename="package://arm_description/meshes/stand/mounting_plate.stl"/>
-        </geometry>
         <material name="white">
-    </visual>
-    <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-    </inertial>
-  </link> 
+                <color rgba="1 1 1 1" />
+        </material>
 
+        <material name="grey">
+                <color rgba="0.5 0.5 0.5 1" />
+        </material>
+
+        <material name="red">
+                <color rgba="1 0 0 1" />
+        </material>
+
+        <!--LINKS-->
+        <!--stand-->
+        <link name="base_link">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/stand/mounting_plate.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0.06 -0.06 0" rpy="1.5708 0 3.1415" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="base_tube">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/stand/base_tube.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0.04 -0.04 0" rpy="1.5708 0 3.1415" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="baseplate">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/stand/baseplate.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0.04 -0.04 0" rpy="1.5708 0 3.1415" />
+                        <material name="white" />
+                </visual>
+        </link>
+
+        <!--base-->
+        <link name="base_pulley">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/base/base_pulley.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0.035 -0.035 0.009" rpy="1.5708 1.5708 3.1415" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="base_structure">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/base/base_structure.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0.0774 0.035 0" rpy="1.5708 0 -1.5708" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="base_structure_cover">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/base/base_structure_cover.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="-0.0826 -0.02 0" rpy="1.5708 0 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+
+        <!--upperarm-->
+        <link name="upper_pulley">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/upperarm/j2_pulley.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="-0.04 -0.04 0" rpy="0 0 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="upper_structure">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/upperarm/upper_structure.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0.042 -0.03 0" rpy="0 3.1415 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="upper_bearing_mount">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/upperarm/upper_bearing_mount.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0.042 -0.03 -0.00025" rpy="0 3.1415 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="upper_housing">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/upperarm/upper_housing.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0.028 -0.03 -0.062" rpy="0 0 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+
+        <!--forearm-->
+        <link name="fore_pulley">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/forearm/j3_pulley.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="-0.035 -0.035 0.0175" rpy="0 1.5708 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="fore_structure">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/forearm/forearm_structure.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="-0.045 -0.043 0" rpy="3.1415 -1.5708 1.5708" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="fore_rotation">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/forearm/forearm_rotation.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="-0.033 -0.0175 0" rpy="0 0 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="j5_bearing_adapter_1">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/forearm/j5_bearing_adapter.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="-0.023 0.011 0.10525" rpy="1.5708 1.5708 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="j5_bearing_adapter_2">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/forearm/j5_bearing_adapter.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0.023 -0.011 0.09525" rpy="-1.5708 1.5708 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+        <link name="j6_housing">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/forearm/j6_housing.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="-0.01385 -0.01085 -0.02" rpy="0 0 0" />
+                        <material name="white" />
+                </visual>
+        </link>
+
+        <!--end effector-->
+        <link name="j6_nema8">
+                <visual>
+                        <geometry>
+                                <mesh filename="package://arm_description/meshes/forearm/j6_nema8.stl" scale ="0.001 0.001 0.001"/>
+                        </geometry>
+                        <origin xyz="0 0 0" rpy="0 0 0" />
+                        <material name="red" />
+                </visual>
+        </link>
+
+        <!--JOINTS-->
+        <!--stand joints-->
+        <joint name="stand_link_tube_joint" type="fixed">
+                <parent link="base_link" />
+                <child link="base_tube" />
+                <origin xyz="0 0 0.02" rpy="0 0 0" />
+        </joint>
+        <joint name="stand_tube_baseplate_joint" type="fixed">
+                <parent link="base_tube" />
+                <child link="baseplate" />
+                <origin xyz="0 0 0.048" rpy="0 0 0" />
+        </joint>
+
+        <!--base joints-->
+        <!--J1-->
+        <joint name="J1" type="continuous">
+                <parent link="baseplate"/>
+                <child link="base_pulley"/>
+                <origin xyz="0 0 0.016" rpy="0 0 0" />
+                <axis xyz="0 0 1"/>
+        </joint>
+        <joint name="base_pulley_structure_joint" type="fixed">
+                <parent link="base_pulley" />
+                <child link="base_structure" />
+                <origin xyz="0 0 0.009" rpy="0 0 0" />
+        </joint>
+        <joint name="base_structure_cover_joint" type="fixed">
+                <parent link="base_structure" />
+                <child link="base_structure_cover" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+        </joint>
+
+        <!--upperarm joints-->
+        <!--J2-->
+        <joint name="J2" type="revolute">
+                <parent link="base_structure"/>
+                <child link="upper_pulley"/>
+                <origin xyz="0.037 -0.0337 0.04" rpy="1.5708 0 3.1415" />
+                <limit lower="-0.349" upper="1.5708" effort="10" velocity="3"/>
+                <axis xyz="0 0 1"/>
+        </joint>
+        <joint name="upper_pulley_structure" type="fixed">
+                <parent link="upper_pulley" />
+                <child link="upper_structure" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+        </joint>
+        <joint name="upper_structure_mount" type="fixed">
+                <parent link="upper_structure" />
+                <child link="upper_bearing_mount" />
+                <origin xyz="0.031 0.03 0.042" rpy="0 1.5708 0" />
+        </joint>
+        <joint name="upper_mount_housing" type="fixed">
+                <parent link="upper_bearing_mount" />
+                <child link="upper_housing" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        </joint>      
+
+        <!--forearm joints-->
+        <!--J3-->
+        <joint name="J3" type="revolute">
+                <parent link="upper_structure"/>
+                <child link="fore_pulley"/>
+                <origin xyz="0.0 0.16 0.0" rpy="0 0 1.5708" />
+                <limit lower="-3.1415" upper="1.5708" effort="10" velocity="3"/>
+                <axis xyz="0 0 1"/>
+        </joint>
+        <joint name="fore_pully_structure_joint" type="fixed">
+                <parent link="fore_pulley" />
+                <child link="fore_structure" />
+                <origin xyz="0 0 0.01" rpy="0 0 0" />
+        </joint>
+
+        <!--J4-->
+        <joint name="J4" type="revolute">
+                <parent link="fore_structure"/>
+                <child link="fore_rotation"/>
+                <origin xyz="0.015 0.035 0.0245" rpy="0 1.5708 1.5708" />
+                <limit lower="-3.1415" upper="1.5708" effort="10" velocity="3"/>
+                <axis xyz="0 0 1"/>
+        </joint>
+        <joint name="fore_rotation_bearing_1" type="fixed">
+                <parent link="fore_rotation" />
+                <child link="j5_bearing_adapter_1" />
+                <origin xyz="0 0 0.01" rpy="0 0 0" />
+        </joint>
+        <joint name="fore_rotation_bearing_2" type="fixed">
+                <parent link="fore_rotation" />
+                <child link="j5_bearing_adapter_2" />
+                <origin xyz="0 0 0.02" rpy="0 0 0" />
+        </joint>
+
+        <!--J5-->
+        <joint name="J5" type="revolute">
+                <parent link="j5_bearing_adapter_1"/>
+                <child link="j6_housing"/>
+                <origin xyz="0 0 0.0925" rpy="0 0 0" />
+                <limit lower="-3.1415" upper="1.5708" effort="10" velocity="3"/>
+                <axis xyz="1 0 0"/>
+        </joint>
+
+        <!--end effector joints-->
+        <joint name="end_housing_nema8" type="fixed">
+                <parent link="j6_housing"/>
+                <child link="j6_nema8"/>
+                <origin xyz="0 0 0.0078" rpy="0 0 0" />
+        </joint>
+
+        <!--ROS2 Control-->
+        <ros2_control name="GazeboSystem" type="system">
+                <hardware>
+                        <plugin>gazebo_ros2_control_GazeboSystem</plugin>
+                </hardware>
+
+                <joint name="J1">
+                        <command_interface name="position">
+                                <param name="min">-3.14</param>
+                                <param name="max">3.14</param>
+                        </command_interface>
+                        <state_interface name="position">
+                                <param name="inital_value">0</param>
+                        </state_interface>
+                        <state_interface name="velocity">
+                        <state_interface name="effort">
+                </joint>
+                
+                <joint name="J2">
+                        <command_interface name="position">
+                                <param name="min">-3.14</param>
+                                <param name="max">3.14</param>
+                        </command_interface>
+                        <state_interface name="position">
+                                <param name="inital_value">0</param>
+                        </state_interface>
+                        <state_interface name="velocity">
+                        <state_interface name="effort">
+                </joint>
+                
+                <joint name="J3">
+                        <command_interface name="position">
+                                <param name="min">-3.14</param>
+                                <param name="max">3.14</param>
+                        </command_interface>
+                        <state_interface name="position">
+                                <param name="inital_value">0</param>
+                        </state_interface>
+                        <state_interface name="velocity">
+                        <state_interface name="effort">
+                </joint>
+
+                <joint name="J4">
+                        <command_interface name="position">
+                                <param name="min">-3.14</param>
+                                <param name="max">3.14</param>
+                        </command_interface>
+                        <state_interface name="position">
+                                <param name="inital_value">0</param>
+                        </state_interface>
+                        <state_interface name="velocity">
+                        <state_interface name="effort">
+                </joint>
+
+                <joint name="J5">
+                        <command_interface name="position">
+                                <param name="min">-3.14</param>
+                                <param name="max">3.14</param>
+                        </command_interface>
+                        <state_interface name="position">
+                                <param name="inital_value">0</param>
+                        </state_interface>
+                        <state_interface name="velocity">
+                        <state_interface name="effort">
+                </joint>
+        </ros2_control>
+
+        <gazebo>
+                <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+                        <parameters>$(find arm_description)/config/joint_controller.yaml</parameters>
+                </plugin>
+        </gazebo>
 </robot>
-
