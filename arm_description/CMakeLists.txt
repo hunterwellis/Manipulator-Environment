@@ -15,6 +15,8 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(xacro REQUIRED)
+find_package(robot_state_publisher REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(trajectory_msgs REQUIRED)
 
@@ -27,9 +29,9 @@ install(TARGETS
 
 install(DIRECTORY 
         launch
-        urdf
+        model 
         config
-        meshes
+        control
     DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
