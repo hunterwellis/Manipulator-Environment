@@ -23,9 +23,9 @@ find_package(trajectory_msgs REQUIRED)
 add_executable(joint_publisher src/joint_publisher.cpp)
 ament_target_dependencies(joint_publisher rclcpp trajectory_msgs)
 
-install(TARGETS
-    joint_publisher
-    DESTINATION lib/${PROJECT_NAME})
+# install(TARGETS
+#     joint_publisher
+#     DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY 
         launch
