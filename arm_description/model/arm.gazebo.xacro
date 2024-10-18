@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+
+<robot>
+    <xacro:macro name="arm_gazebo">
+        <gazebo reference="base_link">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="base_tube">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="baseplate">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="base_pulley">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="base_structure">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="base_structure_cover">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="upper_pulley">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="upper_structure">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="upper_bearing_mount">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="upper_housing">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="fore_pulley">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="fore_structure">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="fore_rotation">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="j5_bearing_adapter_1">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="j5_bearing_adapter_2">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="j6_housing">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <gazebo reference="j6_nema8">
+            <mul1>0.2</mul1>
+            <mul2>0.2</mul2>
+            <material>Gazebo/White</Gazebo>
+        </gazebo>
+
+        <!--Controller for Joint Trajectory-->
+        <gazebo>
+            <plugin filename="gz-sim-joint-trajectory-controller-system" name="gz::sim::systems::JointTrajectoryController">
+                <joint_name>J1</joint_name>
+                    <initial_position>0.7854</initial_position>
+                    <position_p_gain>20</position_p_gain>
+                    <position_i_gain>0.4</position_i_gain>
+                    <position_d_gain>1.0</position_d_gain>
+                    <position_i_min>-1</position_i_min>
+                    <position_i_max>1</position_i_max>
+                    <position_cmd_min>-20</position_cmd_min>
+                    <position_cmd_max>20</position_cmd_max>
+
+                <joint_name>J2</joint_name>
+                    <initial_position>0.7854</initial_position>
+                    <position_p_gain>20</position_p_gain>
+                    <position_i_gain>0.4</position_i_gain>
+                    <position_d_gain>1.0</position_d_gain>
+                    <position_i_min>-1</position_i_min>
+                    <position_i_max>1</position_i_max>
+                    <position_cmd_min>-20</position_cmd_min>
+                    <position_cmd_max>20</position_cmd_max>
+
+                <joint_name>J3</joint_name>
+                    <initial_position>0.7854</initial_position>
+                    <position_p_gain>20</position_p_gain>
+                    <position_i_gain>0.4</position_i_gain>
+                    <position_d_gain>1.0</position_d_gain>
+                    <position_i_min>-1</position_i_min>
+                    <position_i_max>1</position_i_max>
+                    <position_cmd_min>-20</position_cmd_min>
+                    <position_cmd_max>20</position_cmd_max>
+
+                <joint_name>J4</joint_name>
+                    <initial_position>0.7854</initial_position>
+                    <position_p_gain>20</position_p_gain>
+                    <position_i_gain>0.4</position_i_gain>
+                    <position_d_gain>1.0</position_d_gain>
+                    <position_i_min>-1</position_i_min>
+                    <position_i_max>1</position_i_max>
+                    <position_cmd_min>-20</position_cmd_min>
+                    <position_cmd_max>20</position_cmd_max>
+
+                <joint_name>J5</joint_name>
+                    <initial_position>0.7854</initial_position>
+                    <position_p_gain>20</position_p_gain>
+                    <position_i_gain>0.4</position_i_gain>
+                    <position_d_gain>1.0</position_d_gain>
+                    <position_i_min>-1</position_i_min>
+                    <position_i_max>1</position_i_max>
+                    <position_cmd_min>-20</position_cmd_min>
+                    <position_cmd_max>20</position_cmd_max>
+
+                <topic>cmd</topic> 
+                <tf_topic>/tf</tf_topic>
+                <child_frame_id>base_footprint</child_frame_id>
+
+            </plugin>
+
+            <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+                <topic>joint_states</topic>
+                <joint_name>J1</joint_name>
+                <joint_name>J2</joint_name>
+                <joint_name>J3</joint_name>
+                <joint_name>J4</joint_name>
+                <joint_name>J5</joint_name>
+
+            </plugin>
+
+        </gazebo>
+    </xacro:macro>
+</robot>

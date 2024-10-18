@@ -1,4 +1,7 @@
-<sdf version='1.10'>
+import os
+
+def create_sdf(model_name='box', model_size='0.3 0.3 0.3', model_pose='-0.7 0.5 0.15 0 0 0'):
+    return f"""<sdf version='1.10'>
   <world name='empty'>
     <physics name='1ms' type='ignored'>
       <max_step_size>0.001</max_step_size>
@@ -66,9 +69,9 @@
       <pose>0 0 0 0 0 0</pose>
       <self_collide>false</self_collide>
     </model>
-    <model name='box'>
-      <pose>0.3 0.03 0.05 0 0 0</pose>
-      <link name='box_link'>
+    <model name='{model_name}'>
+      <pose>{model_pose}</pose>
+      <link name='{model_name}_link'>
         <inertial>
           <inertia>
             <ixx>0.16666</ixx>
@@ -81,10 +84,10 @@
           <mass>1</mass>
           <pose>0 0 0 0 0 0</pose>
         </inertial>
-        <collision name='box_collision'>
+        <collision name='{model_name}_collision'>
           <geometry>
             <box>
-              <size>0.1 0.1 0.1</size>
+              <size>{model_size}</size>
             </box>
           </geometry>
           <surface>
@@ -95,65 +98,16 @@
             <contact/>
           </surface>
         </collision>
-        <visual name='box_visual'>
+        <visual name='{model_name}_visual'>
           <geometry>
             <box>
-              <size>0.1 0.1 0.1</size>
+              <size>{model_size}</size>
             </box>
           </geometry>
           <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
-            <specular>0 0 1 1</specular>
-            <emissive>0 0 0 0</emissive>
-          </material>
-        </visual>
-        <pose>0 0 0 0 0 0</pose>
-        <enable_wind>false</enable_wind>
-      </link>
-      <static>false</static>
-      <self_collide>false</self_collide>
-    </model>
-    <model name='box2'>
-      <pose>0.2 -0.2 0.015 0 0 0</pose>
-      <link name='box_link'>
-        <inertial>
-          <inertia>
-            <ixx>0.16666</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.16666</iyy>
-            <iyz>0</iyz>
-            <izz>0.16666</izz>
-          </inertia>
-          <mass>1</mass>
-          <pose>0 0 0 0 0 0</pose>
-        </inertial>
-        <collision name='box_collision'>
-          <geometry>
-            <box>
-              <size>0.03 0.03 0.03</size>
-            </box>
-          </geometry>
-          <surface>
-            <friction>
-              <ode/>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name='box_visual'>
-          <geometry>
-            <box>
-              <size>0.03 0.03 0.03</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0 0 1 1</ambient>
-            <diffuse>0 0 1 1</diffuse>
-            <specular>0 0 1 1</specular>
-            <emissive>0 0 0 0</emissive>
+            <ambient>0.300000012 0.300000012 0.300000012 1</ambient>
+            <diffuse>0.699999988 0.699999988 0.699999988 1</diffuse>
+            <specular>1 1 1 1</specular>
           </material>
         </visual>
         <pose>0 0 0 0 0 0</pose>
@@ -183,3 +137,6 @@
     </light>
   </world>
 </sdf>
+"""
+
+if __name__ == "__main__":

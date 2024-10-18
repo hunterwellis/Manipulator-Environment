@@ -52,7 +52,7 @@ def generate_launch_description():
 
     xacro_file = os.path.join(arm_description_path,
                               'model',
-                              'arm.urdf')
+                              'arm.urdf.xacro')
 
     doc = xacro.process_file(xacro_file, mappings={'use_sim' : 'true'})
 

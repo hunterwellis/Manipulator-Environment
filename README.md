@@ -25,7 +25,6 @@ ros2 launch arm_description gazebo.launch.py
 ```
 
 ### TODO:
-- fix gazebo launch file
 - inverse kinematics for end effector manipulation
 - add objects for manipulation
 - add camera sensor
