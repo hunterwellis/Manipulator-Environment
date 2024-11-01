@@ -39,6 +39,4 @@ ros2 launch arm_simulation arm_spawn.launch.py
 
 
 ### TODO:
-- inverse kinematics for end effector manipulation
-- add objects for manipulation
 - add camera sensor

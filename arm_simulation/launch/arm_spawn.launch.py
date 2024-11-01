@@ -74,7 +74,7 @@ def generate_launch_description():
         arguments=['-string', robot_desc,
                    '-x', '0.0',
                    '-y', '0.0',
-                   '-z', '0.07',
+                   '-z', '0.0',
                    '-R', '0.0',
                    '-P', '0.0',
                    '-Y', '0.0',
