@@ -210,7 +210,7 @@
         <collision name='box_collision'>
           <geometry>
             <box>
-              <size>0.05 0.1 0.03</size>
+              <size>0.08 0.1 0.03</size>
             </box>
           </geometry>
           <surface>
