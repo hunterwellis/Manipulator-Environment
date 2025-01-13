@@ -4,7 +4,7 @@ ROS2 packages for training my 6-axis robot arm (modified version of an [open-sou
 
 Using ROS2 Jazzy, Jazzy control packages, and Gazebo Harmonic. 
 
-![arm drawing](./images/arm_iso.jpg)
+![arm drawing](./images/arm_env.png)
 
 ## Quick start
 Build the packages like any other ROS packages &ndash; from a workspace dir:
@@ -18,13 +18,18 @@ Source ROS then build and source the package,
 ```
 source /opt/ros/jazzy/setup.bash
 colcon build
-source install/setup.bash
+source ./install/setup.bash
 ```
 
 ## arm_description
 Contains robot URDF, meshes, and Gazebo launch files for the arm.
 
-![arm rviz](./images/arm_rviz.png)
+To visualize the arm in RViz
+```
+ros2 launch urdf_tutorial display.launch.py model:=/path/to/arm_ws/src/arm_description/model/arm.urdf.xacro
+```
+
+![arm rviz](./images/kinematic_chain.png)
 
 *Arm model in RViz.*
 
@@ -33,7 +38,6 @@ The simulation package contains the SDF world files and other files related to t
 
 To launch the arm in the gazebo environment
 ```
-source opt/ros/jazzy/setup.bash
 ros2 launch arm_simulation arm_spawn.launch.py
 ```
 

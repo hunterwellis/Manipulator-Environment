@@ -23,23 +23,23 @@
       <pose>0.29 0 0 0 0 1.5708</pose>
     </model>
 
-    <model name="bolt1">
+    <model name="cylinder">
       <include>
-        <uri>model://bolt</uri>
+        <uri>model://objects/small/cylinder</uri>
       </include>
       <pose>0.5 0.35 1.05 0 1.5 0</pose>
     </model>
 
-    <model name="bolt2">
+    <model name="cube">
       <include>
-        <uri>model://bolt</uri>
+        <uri>model://objects/small/cube</uri>
       </include>
       <pose>0.25 0.63 1.05 0 -1.5 -2.82</pose>
     </model>
 
-    <model name="bolt3">
+    <model name="sphere">
       <include>
-        <uri>model://bolt</uri>
+        <uri>model://objects/small/sphere</uri>
       </include>
       <pose>0.11 0.53 1.05 0 -1.5 -1.0</pose>
     </model>

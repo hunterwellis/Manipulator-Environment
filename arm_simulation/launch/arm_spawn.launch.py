@@ -108,7 +108,7 @@ def generate_launch_description():
         output='screen'
     )
 
-    rviz_config_file = os.path.join(arm_description_path, 'config', 'fws_robot_config.rviz')
+    rviz_config_file = os.path.join(arm_description_path, 'config', 'arm_config.rviz')
 
     rviz = Node(
         package="rviz2",
