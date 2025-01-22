@@ -108,16 +108,6 @@ def generate_launch_description():
         output='screen'
     )
 
-    rviz_config_file = os.path.join(arm_description_path, 'rviz', 'arm_description.rviz')
-
-    rviz = Node(
-        package="rviz2",
-        executable="rviz2",
-        name="rviz2",
-        output="screen",
-        arguments=["-d", rviz_config_file],
-    )
-
     return LaunchDescription([
         RegisterEventHandler(
             event_handler=OnProcessExit(
@@ -138,5 +128,4 @@ def generate_launch_description():
         node_robot_state_publisher,
         gz_spawn_entity,
         bridge,
-        rviz,
     ])

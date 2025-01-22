@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="https://www.ros.org/wiki/xacro" name="arm">
+        <xacro:arg name="prefix" default=""/>
 
         <xacro:include filename="$(find arm_description)/control/arm.ros2_control.xacro" />
 
@@ -506,6 +507,5 @@
                 <child link="j6_nema8"/>
                 <origin xyz="0 0 0.0078" rpy="0 0 0" />
         </joint>
-
 
 </robot>
