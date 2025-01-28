@@ -29,8 +29,6 @@ ament_target_dependencies(joint_publisher rclcpp trajectory_msgs)
 
 install(DIRECTORY 
         model 
-        config
-        control
         rviz
         launch
     DESTINATION share/${PROJECT_NAME})
