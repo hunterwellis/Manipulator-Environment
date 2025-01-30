@@ -23,8 +23,12 @@ find_package(xacro REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 install(
-  DIRECTORY launch worlds
-  DESTINATION share/${PROJECT_NAME}
+  DIRECTORY 
+  launch 
+  worlds
+  config
+  DESTINATION 
+  share/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)

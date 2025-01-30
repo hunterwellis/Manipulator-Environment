@@ -19,7 +19,7 @@ def generate_launch_description():
                          'jsp.launch.py'
                          )
         ),
-        launch_arguments={'jsp_gui': 'true'}.items()
+        launch_arguments={'jsp_gui': 'false'}.items()
     )
 
     state_publisher = IncludeLaunchDescription(

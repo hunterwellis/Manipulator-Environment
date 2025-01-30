@@ -27,11 +27,15 @@ ament_target_dependencies(joint_publisher rclcpp trajectory_msgs)
 #     joint_publisher
 #     DESTINATION lib/${PROJECT_NAME})
 
-install(DIRECTORY 
-        model 
-        rviz
-        launch
-    DESTINATION share/${PROJECT_NAME})
+install(
+  DIRECTORY 
+  model 
+  rviz
+  launch
+  control
+  DESTINATION
+  share/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

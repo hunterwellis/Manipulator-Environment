@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="https://www.ros.org/wiki/xacro" name="arm">
+        
         <xacro:arg name="prefix" default=""/>
 
-        <xacro:include filename="$(find arm_description)/control/arm.ros2_control.xacro" />
+        <xacro:include filename="$(find arm_description)/model/arm.gazebo" />
+        <xacro:include filename="$(find arm_description)/control/control_gazebo.xacro" />
 
         <material name="white">
                 <color rgba="1 1 1 1" />
@@ -508,4 +510,8 @@
                 <origin xyz="0 0 0.0078" rpy="0 0 0" />
         </joint>
 
+        <!--GAZEBO-->
+        <xacro:robot_ros2_control/>
+
+        <xacro:arm_gazebo/>
 </robot>
