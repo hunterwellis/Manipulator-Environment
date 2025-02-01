@@ -7,6 +7,7 @@ ROS2 packages for simulating and training a 6-axis robot arm (modified version o
 - Ubuntu 24.04 (Noble Numbat)
 - ROS2 Jazzy
 - Jazzy control packages
+- Jazzy USB cam package
 - Gazebo Harmonic
 
 ## Usage
