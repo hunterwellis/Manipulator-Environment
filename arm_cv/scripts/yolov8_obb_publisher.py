@@ -27,7 +27,7 @@ class Camera_subscriber(Node):
             '/image_raw',
             self.camera_callback,
             10)
-        self.subscription 
+        self.subscription
 
         self.yolov8_pub = self.create_publisher(Yolov8Inference, "/Yolov8_Inference", 1)
         self.img_pub = self.create_publisher(Image, "/inference_result", 1)
@@ -45,7 +45,7 @@ class Camera_subscriber(Node):
                 boxes = r.obb
                 for box in boxes:
                     self.inference_result = InferenceResult()
-                    b = box.xyxyxyxy[0].to('cpu').detach().numpy().copy() 
+                    b = box.xyxyxyxy[0].to('cpu').detach().numpy().copy()
                     c = box.cls
                     self.inference_result.class_name = self.model.names[int(c)]
                     a = b.reshape(1,8)

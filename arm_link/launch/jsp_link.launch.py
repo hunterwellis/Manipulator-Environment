@@ -22,7 +22,7 @@ def generate_launch_description():
 
     jss = Node(
         package='arm_link',
-        executable='joint_state_serial_subscirber.py',
+        executable='joint_state_serial_subscriber.py',
         name='jss'
     )
 

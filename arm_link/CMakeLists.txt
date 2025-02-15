@@ -7,6 +7,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 find_package(robot_state_publisher REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(std_msgs REQUIRED)
@@ -18,6 +19,14 @@ install(
   scripts
   DESTINATION
   share/${PROJECT_NAME}/
+)
+
+install(
+  PROGRAMS
+  scripts/joint_state_serial_subscriber.py
+  scripts/serial_comm.py
+  DESTINATION
+  lib/${PROJECT_NAME}/
 )
 
 # uncomment the following section in order to fill in
