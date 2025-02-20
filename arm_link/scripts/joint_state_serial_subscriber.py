@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import JointState
 from serial_comm import SerialComm
+import time
 
 
 class JointStateSerialSubscriber(Node):
@@ -12,6 +13,8 @@ class JointStateSerialSubscriber(Node):
 
         self.serial = SerialComm()
         self.serial.open_connection()
+
+        self.start_time = time.time()
 
         self.subscription = self.create_subscription(
             JointState,
@@ -24,6 +27,14 @@ class JointStateSerialSubscriber(Node):
     def __del__(self):
         self.serial.close_connection()
 
+    def timer(self):
+        elapsed_time = time.time() - self.start_time
+        if elapsed_time > 0.1:
+            self.start_time = time.time()
+            return True
+        else:
+            return False
+
     def jss_callback(self, msg):
         # self.get_logger().info('Received Joint State:')
         # self.get_logger().info(f'Names: {msg.name}')
@@ -32,10 +43,16 @@ class JointStateSerialSubscriber(Node):
         # self.get_logger().info(f'Efforts: {msg.effort}')
 
         # self.get_logger().info('Serial Output')
-        serial_msg = f'j1{round(1000*msg.position[0])}j2{round(msg.position[1])}j3{round(msg.position[2])}j4{round(msg.position[3])}j5{round(msg.position[4])}'
+        if self.timer():
+            j1_pos = str(round(1000*msg.position[0])).zfill(4)
+            j2_pos = str(round(1000*msg.position[1])).zfill(4)
+            j3_pos = str(round(1000*msg.position[2])).zfill(4)
+            j4_pos = str(round(1000*msg.position[3])).zfill(4)
 
-        # self.get_logger().info(serial_msg)
-        self.serial.send_message(serial_msg)
+            serial_msg = j1_pos + j2_pos + j3_pos + j4_pos + "\n"
+
+            self.get_logger().info(serial_msg)
+            self.serial.send_message(serial_msg)
 
 
 def main(args=None):

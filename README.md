@@ -23,4 +23,14 @@ ros2 launch arm_description rviz_jsp.launch.py
 **arm_simulation**
 -- The simulation package contains the SDF world files and other files related to setup of the Gazebo simulation environment.
 
-**arm_rl** -- The reinforcement learning package has launch files to set up gym training environments and scripts to run RL algorithms.
+**arm_rl** 
+-- The reinforcement learning package has launch files to set up gym training environments and scripts to run RL algorithms.
+
+**arm_cv** 
+-- Computer vision package using YOLOv8 (with oriented bounding boxes). 
+
+**arm_nlp** 
+-- Natural language processing package for converting natural language prompts to symbolic representations.
+
+**arm_link**
+-- Serial communication link to arm.

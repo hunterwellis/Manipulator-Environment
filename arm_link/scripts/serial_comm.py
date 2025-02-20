@@ -5,7 +5,7 @@ import time
 
 
 class SerialComm:
-    def __init__(self, port='/dev/ttyACM1', baudrate=115200, timeout=1):
+    def __init__(self, port='/dev/ttyACM0', baudrate=9600, timeout=1):
         self.port = port
         self.baudrate = baudrate
         self.timeout = timeout
@@ -26,8 +26,8 @@ class SerialComm:
 
     def send_message(self, message):
         if self.ser and self.ser.is_open:
-            print(message)
             self.ser.write(message.encode('utf-8'))
+            print("Message sent.")
         else:
             print("Serial connection not open. Cannot send message.")
 
@@ -40,19 +40,20 @@ class SerialComm:
     #     else:
     #         print("Serial connection not open. Cannot receive message.")
     #         return None
-    #
+
 
 def main():
     serial = SerialComm()
     serial.open_connection()
-    serial.send_message("j11000\n")
+    serial.send_message("1000100010001000\n")
     time.sleep(1)
+    serial.send_message("0000100010001000\n")
+    serial.send_message("0000000000000000\n")
     time.sleep(1)
-    serial.send_message("j10\n")
-    time.sleep(0.01)
     serial.close_connection()
 
 
+# test
 if __name__ == "__main__":
     main()
 
