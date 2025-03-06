@@ -16,7 +16,7 @@ class SerialComm:
             self.ser = serial.Serial(self.port, self.baudrate, timeout=self.timeout)
             time.sleep(2)
             print(f"Connected to {self.port} at {self.baudrate} baud.")
-        except serial.SerialException as e:
+        except self.ser.SerialException as e:
             print(f"Error opening serial port: {e}")
 
     def close_connection(self):
@@ -27,7 +27,7 @@ class SerialComm:
     def send_message(self, message):
         if self.ser and self.ser.is_open:
             self.ser.write(message.encode('utf-8'))
-            print("Message sent.")
+            # print("Message sent.")
         else:
             print("Serial connection not open. Cannot send message.")
 
@@ -56,4 +56,3 @@ def main():
 # test
 if __name__ == "__main__":
     main()
-

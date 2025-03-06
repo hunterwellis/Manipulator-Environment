@@ -5,6 +5,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import JointState
 from serial_comm import SerialComm
 import time
+import numpy as np
 
 
 class JointStateSerialSubscriber(Node):
@@ -35,6 +36,12 @@ class JointStateSerialSubscriber(Node):
         else:
             return False
 
+    def sign_bit(self, num):
+        if np.sign(num) == -1:
+            return "1"
+        else:
+            return "0"
+
     def jss_callback(self, msg):
         # self.get_logger().info('Received Joint State:')
         # self.get_logger().info(f'Names: {msg.name}')
@@ -44,10 +51,14 @@ class JointStateSerialSubscriber(Node):
 
         # self.get_logger().info('Serial Output')
         if self.timer():
-            j1_pos = str(round(1000*msg.position[0])).zfill(4)
-            j2_pos = str(round(1000*msg.position[1])).zfill(4)
-            j3_pos = str(round(1000*msg.position[2])).zfill(4)
-            j4_pos = str(round(1000*msg.position[3])).zfill(4)
+            j1_pos = self.sign_bit(msg.position[0]) + \
+                str(round(1000*abs(msg.position[0]))).zfill(4)
+            j2_pos = self.sign_bit(msg.position[1]) + \
+                str(round(1000*abs(msg.position[1]))).zfill(4)
+            j3_pos = self.sign_bit(msg.position[2]) + \
+                str(round(1000*abs(msg.position[2]))).zfill(4)
+            j4_pos = self.sign_bit(msg.position[3]) + \
+                str(round(1000*abs(msg.position[3]))).zfill(4)
 
             serial_msg = j1_pos + j2_pos + j3_pos + j4_pos + "\n"
 
