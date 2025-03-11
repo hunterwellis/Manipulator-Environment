@@ -23,7 +23,6 @@ class JointStateSerialSubscriber(Node):
             self.jss_callback,
             10
         )
-        self.subscription
 
     def __del__(self):
         self.serial.close_connection()
