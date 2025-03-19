@@ -2,7 +2,7 @@
 
 ROS2 packages for simulating and training a 6-axis robot arm (modified version of an [open-source hardware design by tw2ka](https://www.dropbox.com/scl/fi/mgowac0a7bwx7u2pcz12b/Arduino-robot-arm-files-step.zip?rlkey=3cpy6x4wcpfr1s548s7qxxex5&e=2&dl=0)) for reinforcement learning tasks.
 
-![arm rviz](./images/arm_rviz.png)
+![arm rviz](./images/jsp_demo.gif)
 ### Requirements
 - Ubuntu 24.04 (Noble Numbat)
 - ROS2 Jazzy
@@ -15,6 +15,7 @@ To visualize the arm in RViz with the joint state publisher GUI.
 ```
 ros2 launch arm_description rviz_jsp.launch.py
 ```
+![arm rviz](./images/arm_rviz.png)
 
 ## Packages
 **arm_description**
