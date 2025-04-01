@@ -1,0 +1,27 @@
+running egg_info
+creating build/gym_arm/gym_arm.egg-info
+writing build/gym_arm/gym_arm.egg-info/PKG-INFO
+writing dependency_links to build/gym_arm/gym_arm.egg-info/dependency_links.txt
+writing requirements to build/gym_arm/gym_arm.egg-info/requires.txt
+writing top-level names to build/gym_arm/gym_arm.egg-info/top_level.txt
+writing manifest file 'build/gym_arm/gym_arm.egg-info/SOURCES.txt'
+reading manifest file 'build/gym_arm/gym_arm.egg-info/SOURCES.txt'
+writing manifest file 'build/gym_arm/gym_arm.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/build/gym_arm/build
+creating /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/build/gym_arm/build/lib
+creating /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/build/gym_arm/build/lib/gym_arm
+copying gym_arm/arm_env.py -> /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/build/gym_arm/build/lib/gym_arm
+copying gym_arm/__init__.py -> /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/build/gym_arm/build/lib/gym_arm
+running install
+running install_lib
+creating /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/install/gym_arm/lib/python3.12/site-packages/gym_arm
+copying /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/build/gym_arm/build/lib/gym_arm/arm_env.py -> /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/install/gym_arm/lib/python3.12/site-packages/gym_arm
+copying /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/build/gym_arm/build/lib/gym_arm/__init__.py -> /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/install/gym_arm/lib/python3.12/site-packages/gym_arm
+byte-compiling /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/install/gym_arm/lib/python3.12/site-packages/gym_arm/arm_env.py to arm_env.cpython-312.pyc
+byte-compiling /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/install/gym_arm/lib/python3.12/site-packages/gym_arm/__init__.py to __init__.cpython-312.pyc
+running install_egg_info
+Copying build/gym_arm/gym_arm.egg-info to /home/hunter/dev/thesis/env/src/arm_rl/gym_arm/install/gym_arm/lib/python3.12/site-packages/gym_arm-0.1-py3.12.egg-info
+running install_scripts
+writing list of installed files to '/home/hunter/dev/thesis/env/src/arm_rl/gym_arm/build/gym_arm/install.log'

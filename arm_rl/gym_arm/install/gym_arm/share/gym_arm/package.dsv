@@ -1,0 +1,3 @@
+source;share/gym_arm/hook/pythonpath.ps1
+source;share/gym_arm/hook/pythonpath.dsv
+source;share/gym_arm/hook/pythonpath.sh

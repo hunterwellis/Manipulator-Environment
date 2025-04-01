@@ -1,3 +1,11 @@
+"""
+Joint State Publisher Link Launch File
+
+This launch file initializes the link between hardware and ROS2 via serial.
+
+Author: Hunter Ellis
+Date: 3-29-25
+"""
 import os
 from launch import LaunchDescription
 from launch_ros.actions import Node

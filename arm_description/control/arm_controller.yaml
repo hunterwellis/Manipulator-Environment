@@ -16,7 +16,6 @@ joint_trajectory_controller:
       - J3
       - J4
       - J5
-  interface_name: position
   command_interfaces:
     - position
   state_interfaces:

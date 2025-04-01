@@ -9,11 +9,20 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <depend>controller_manager</depend>
+  <depend>gripper_controllers</depend>
+  <depend>gz_ros2_control</depend>
+  <depend>python3-numpy</depend>
+  <depend>ros_gz</depend>
+  <depend>ros_gz_bridge</depend>
+  <depend>ros_gz_image</depend>
+  <depend>ros_gz_sim</depend>
+  <depend>trajectory_msgs</depend>
+
+  <exec_depend>gz_ros2_control_demos</exec_depend>
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>control_msgs</exec_depend>
   <exec_depend>effort_controllers</exec_depend>
-  <exec_depend>gazebo_ros2_control</exec_depend>
-  <exec_depend>gazebo_ros</exec_depend>
   <exec_depend>hardware_interface</exec_depend>
   <exec_depend>joint_trajectory_controller</exec_depend>
   <exec_depend>joint_state_broadcaster</exec_depend>

@@ -12,7 +12,6 @@
 
   <depend>xacro</depend>
   <depend>robot_state_publisher</depend>
-  <depend>robot_state_publisher_gui</depend>
   <depend>rclcpp</depend>
   <depend>trajectory_msgs</depend>
 

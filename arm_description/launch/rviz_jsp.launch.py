@@ -1,6 +1,13 @@
+"""
+RViz with Joint State Publisher GUI Launch File
+
+This launch file launches the JSP GUI to control RViz.
+
+Author: Hunter Ellis
+Date: 3-29-25
+"""
 import os
 from launch import LaunchDescription
-from launch_ros.actions import Node
 from launch.actions import IncludeLaunchDescription
 from ament_index_python.packages import get_package_share_directory
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -9,8 +16,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 def generate_launch_description():
 
     # package path
-    desc_pkg_path = os.path.join(
-        get_package_share_directory('arm_description'))
+    desc_pkg_path = get_package_share_directory('arm_description')
 
     jsp = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(

@@ -1,10 +1,16 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="https://www.ros.org/wiki/xacro" name="arm">
-        
-        <xacro:arg name="prefix" default=""/>
 
-        <xacro:include filename="$(find arm_description)/model/arm.gazebo" />
-        <xacro:include filename="$(find arm_description)/control/control_gazebo.xacro" />
+        <xacro:include filename="$(find arm_description)/model/arm.gazebo.xacro" />
+        <xacro:include filename="$(find arm_description)/control/arm_ros2_control.xacro" />
+
+        <xacro:arg name="add_world" default="true"/>
+        <xacro:arg name="base_link" default="base_link"/>
+        <xacro:arg name="base_type" default="g_shape"/>
+        <xacro:arg name="flange_link" default="base_link"/>
+        <xacro:arg name="use_camera" default="false"/>
+        <xacro:arg name="use_gazebo" default="false"/>
+        <xacro:arg name="use_gripper" default="true"/>
 
         <material name="white">
                 <color rgba="1 1 1 1" />
@@ -19,28 +25,16 @@
         </material>
 
         <link name="world"/>
-        <joint name="fix_world" type="fixed">
-                <parent link="world"/>
-                <child link="base_footprint"/>
-                <origin xyz="0 0 0"/>
-        </joint>        
-                
-        <!--LINKS-->
-        <link name="base_footprint"> 
-        </link>
-        <joint name="base_footprint_link" type="fixed">
-                <parent link="base_footprint"/>
-                <child link="base_link"/>
-                <origin xyz="0 0 0"/>
-        </joint>
-
+        <joint name="base_to_world" type="fixed">
+                <child link="base_link" />
+                <parent link="world" />
+                <origin xyz="0 0 0" rpy="0 0 0" />    
+        </joint> 
         <!--stand-->
         <link name="base_link">
                 <visual>
                         <geometry>
                                 <mesh filename="package://arm_description/model/meshes/stand/mounting_plate.stl" scale ="0.001 0.001 0.001"/>
-                        <origin xyz="0.06 -0.06 0" rpy="1.5708 0 3.1415" />
-                        <material name="white" />
                         </geometry>
                         <origin xyz="0.06 -0.06 0" rpy="1.5708 0 3.1415" />
                         <material name="white" />
@@ -510,8 +504,42 @@
                 <origin xyz="0 0 0.0078" rpy="0 0 0" />
         </joint>
 
-        <!--GAZEBO-->
-        <xacro:robot_ros2_control/>
 
         <xacro:arm_gazebo/>
+        <xacro:arm_ros2_control/>
+        <!--include relevant to gazebo simulation-->
+        <!--<gazebo>-->
+        <!--        <plugin-->
+        <!--                filename="gz_ros2_control-system"-->
+        <!--                name="gz_ros2_control::GazeboSimROS2ControlPlugin">-->
+        <!--                <parameters>$(find arm_simulation)/config/control_bridge.yaml</parameters>-->
+        <!--        </plugin>-->
+        <!--        <plugin-->
+        <!--                filename="gz-sim-joint-state-publisher-system"-->
+        <!--                name="gz::sim::systems::JointStatePublisher">-->
+        <!--        </plugin>-->
+        <!--        <plugin>-->
+        <!--                filename="gz-sim-pose-publisher-system"-->
+        <!--                name="gz::sim::systems::PosePublisher">-->
+        <!--                <publish_link_pose>true</publish_link_pose>-->
+        <!--                <use_pose_vector_msg>true</use_pose_vector_msg>-->
+        <!--                <publish_nested_model_pose>true</publish_nested_model_pose>-->
+        <!--        </plugin>-->
+        <!---->
+        <!--        <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">-->
+        <!--                <render_engine>ogre2</render_engine>-->
+        <!--        </plugin>-->
+        <!--</gazebo>-->
+
+
+
+        <!--<xacro:include filename="$(find arm_description)/control/gazebo_sim_ros2_control.urdf.xacro" />-->
+        <!--<xacro:load_gazebo_sim_ros2_control_plugin-->
+        <!--        use_gazebo="$(arg use_gazebo)"/>-->
+        <!---->
+        <!--<xacro:include filename="$(find arm_description)/control/arm_ros2_control.urdf.xacro" />-->
+        <!--<xacro:arm_ros2_control-->
+        <!--        flange_link="$(arg flange_link)"-->
+        <!--        use_gazebo="$(arg use_gazebo)"/>-->
+        <!---->
 </robot>

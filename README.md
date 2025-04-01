@@ -1,6 +1,6 @@
 # Robot Arm Manipulator Environment
 
-ROS2 packages for simulating and training a 6-axis robot arm (modified version of an [open-source hardware design by tw2ka](https://www.dropbox.com/scl/fi/mgowac0a7bwx7u2pcz12b/Arduino-robot-arm-files-step.zip?rlkey=3cpy6x4wcpfr1s548s7qxxex5&e=2&dl=0)) for reinforcement learning tasks.
+ROS2 packages for simulating and training a 6-axis robot arm (modified version of an [open-source hardware design by tw2ka](https://www.dropbox.com/scl/fi/mgowac0a7bwx7u2pcz12b/Arduino-robot-arm-files-step.zip?rlkey=3cpy6x4wcpfr1s548s7qxxex5&e=2&dl=0) with custom electronics and firmware) for reinforcement learning tasks.
 
 ![arm rviz](./images/jsp_demo.gif)
 ### Requirements
