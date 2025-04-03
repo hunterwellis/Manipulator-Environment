@@ -12,11 +12,14 @@
 
   <depend>xacro</depend>
   <depend>robot_state_publisher</depend>
+  <depend>rclpy</depend>
   <depend>rclcpp</depend>
   <depend>trajectory_msgs</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
+
+  <exec_depend>python3</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

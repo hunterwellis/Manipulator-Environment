@@ -15,13 +15,12 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 find_package(xacro REQUIRED)
 find_package(robot_state_publisher REQUIRED)
+find_package(rclpy REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(trajectory_msgs REQUIRED)
-
-add_executable(joint_publisher src/joint_publisher.cpp)
-ament_target_dependencies(joint_publisher rclcpp trajectory_msgs)
 
 # install(TARGETS
 #     joint_publisher
@@ -35,6 +34,13 @@ install(
   control
   DESTINATION
   share/${PROJECT_NAME}
+)
+
+install(
+  PROGRAMS
+  control/arm_control.py
+  DESTINATION
+  lib/${PROJECT_NAME}/
 )
 
 if(BUILD_TESTING)
