@@ -18,14 +18,15 @@ install(
   DIRECTORY
   launch
   scripts
-  messages
   DESTINATION
   share/${PROJECT_NAME}/
 )
 
+ament_export_dependencies(rosidl_default_runtime)
+
 rosidl_generate_interfaces(${PROJECT_NAME}
-    "messages/InferenceResult.msg"
-    "messages/Yolov8Inference.msg"
+    "msg/InferenceResult.msg"
+    "msg/Yolov8Inference.msg"
     DEPENDENCIES std_msgs
  )
 

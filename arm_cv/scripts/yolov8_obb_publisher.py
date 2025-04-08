@@ -8,17 +8,18 @@ from rclpy.node import Node
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 
-from yolov8_msgs.msg import InferenceResult
-from yolov8_msgs.msg import Yolov8Inference
+from arm_cv.msg import InferenceResult
+from arm_cv.msg import Yolov8Inference
 
 bridge = CvBridge()
+
 
 class Camera_subscriber(Node):
 
     def __init__(self):
         super().__init__('camera_subscriber')
 
-        self.model = YOLO(os.getcwd() + '/best.pt')
+        self.model = YOLO(os.getcwd() + '/src/arm_cv/scripts/best.pt')
 
         self.yolov8_inference = Yolov8Inference()
 
@@ -35,7 +36,7 @@ class Camera_subscriber(Node):
     def camera_callback(self, data):
 
         img = bridge.imgmsg_to_cv2(data, "bgr8")
-        results = self.model(img, conf = 0.90)
+        results = self.model(img, conf=0.90)
 
         self.yolov8_inference.header.frame_id = "inference"
         self.yolov8_inference.header.stamp = camera_subscriber.get_clock().now().to_msg()
@@ -48,7 +49,7 @@ class Camera_subscriber(Node):
                     b = box.xyxyxyxy[0].to('cpu').detach().numpy().copy()
                     c = box.cls
                     self.inference_result.class_name = self.model.names[int(c)]
-                    a = b.reshape(1,8)
+                    a = b.reshape(1, 8)
                     self.inference_result.coordinates = copy.copy(a[0].tolist())
                     self.yolov8_inference.yolov8_inference.append(self.inference_result)
             else:
@@ -58,8 +59,9 @@ class Camera_subscriber(Node):
         self.yolov8_inference.yolov8_inference.clear()
 
         annotated_frame = results[0].plot()
-        img_msg = bridge.cv2_to_imgmsg(annotated_frame)  
+        img_msg = bridge.cv2_to_imgmsg(annotated_frame)
         self.img_pub.publish(img_msg)
+
 
 if __name__ == '__main__':
     rclpy.init(args=None)

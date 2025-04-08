@@ -51,16 +51,16 @@
       <pose>0.29 0 0 0 0 1.5708</pose>
     </model>
 
-    <model name="cylinder">
+    <model name="bolt">
       <include>
-        <uri>model://objects/small/cylinder</uri>
+        <uri>model://bolt</uri>
       </include>
       <pose>0.5 0.35 1.05 0 1.5 0</pose>
     </model>
 
     <model name="cube">
       <include>
-        <uri>model://objects/small/cube</uri>
+        <uri>model://objects/medium/cube</uri>
       </include>
       <pose>0.25 0.63 1.05 0 -1.5 -2.82</pose>
     </model>

@@ -18,7 +18,8 @@ joints = ['J1',
           'J2',
           'J3',
           'J4',
-          'J5']
+          'J5',
+          'J6']
 
 class JointTrajectoryPublisher(Node):
     def __init__(self):
@@ -39,8 +40,8 @@ class JointTrajectoryPublisher(Node):
         self.duration_nanosec = 0.5 * 1e9
 
         self.arm_poses = []
-        self.arm_poses.append([3.1415, 1.5708, -1.5708, 0.0, 0.0])  # straight
-        self.arm_poses.append([0.0, 0.0, 0.0, 0.0, 0.0])  # home
+        self.arm_poses.append([3.1415, 1.5708, -1.5708, 0.0, 0.0, 0.0])  # straight
+        self.arm_poses.append([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])  # home
 
         self.index = 0
 
@@ -66,6 +67,7 @@ class JointTrajectoryPublisher(Node):
             '\nJ3: ' + str(self.arm_poses[self.index][2]) +
             '\nJ4: ' + str(self.arm_poses[self.index][3]) +
             '\nJ5: ' + str(self.arm_poses[self.index][4]) +
+            '\nJ5: ' + str(self.arm_poses[self.index][5]) +
             '\n'
         )
 

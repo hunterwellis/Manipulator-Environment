@@ -1,545 +1,484 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<!-- Hunter Ellis: modified to work with gazebo -->
 <robot xmlns:xacro="https://www.ros.org/wiki/xacro" name="arm">
+  <xacro:property name="PI" value="3.14159274"/>
+  <xacro:include filename="$(find arm_description)/model/arm.gazebo.xacro" />
+  <xacro:include filename="$(find arm_description)/control/arm_ros2_control.xacro" />
+  <xacro:include filename="$(find arm_description)/model/camera/camera.xacro"/>
 
-        <xacro:include filename="$(find arm_description)/model/arm.gazebo.xacro" />
-        <xacro:include filename="$(find arm_description)/control/arm_ros2_control.xacro" />
+  <xacro:camera_v0 parent="base_link">
+    <origin xyz="0 0 0.7" rpy="0 ${PI/2} 0"/>
+  </xacro:camera_v0>
+  <xacro:camera_gazebo_v0/>
 
-        <xacro:arg name="add_world" default="true"/>
-        <xacro:arg name="base_link" default="base_link"/>
-        <xacro:arg name="base_type" default="g_shape"/>
-        <xacro:arg name="flange_link" default="base_link"/>
-        <xacro:arg name="use_camera" default="false"/>
-        <xacro:arg name="use_gazebo" default="false"/>
-        <xacro:arg name="use_gripper" default="true"/>
-
-        <material name="white">
-                <color rgba="1 1 1 1" />
-        </material>
-
-        <material name="grey">
-                <color rgba="0.5 0.5 0.5 1" />
-        </material>
-
-        <material name="red">
-                <color rgba="1 0 0 1" />
-        </material>
-
-        <link name="world"/>
-        <joint name="base_to_world" type="fixed">
-                <child link="base_link" />
-                <parent link="world" />
-                <origin xyz="0 0 0" rpy="0 0 0" />    
-        </joint> 
-        <!--stand-->
-        <link name="base_link">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/stand/mounting_plate.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.06 -0.06 0" rpy="1.5708 0 3.1415" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/stand/mounting_plate.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.06 -0.06 0" rpy="1.5708 0 3.1415" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="base_tube">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/stand/base_tube.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.04 -0.04 0" rpy="1.5708 0 3.1415" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/stand/base_tube.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.04 -0.04 0" rpy="1.5708 0 3.1415" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="baseplate">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/stand/baseplate.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.04 -0.04 0" rpy="1.5708 0 3.1415" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/stand/baseplate.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.04 -0.04 0" rpy="1.5708 0 3.1415" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-
-        <!--base-->
-        <link name="base_pulley">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/base/base_pulley.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.035 -0.035 0.009" rpy="1.5708 1.5708 3.1415" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/base/base_pulley.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.035 -0.035 0.009" rpy="1.5708 1.5708 3.1415" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="base_structure">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/base/base_structure.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.0774 0.035 0" rpy="1.5708 0 -1.5708" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/base/base_structure.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.0774 0.035 0" rpy="1.5708 0 -1.5708" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="base_structure_cover">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/base/base_structure_cover.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.0826 -0.02 0" rpy="1.5708 0 0" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/base/base_structure_cover.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.0826 -0.02 0" rpy="1.5708 0 0" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-
-        <!--upperarm-->
-        <link name="upper_pulley">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/upperarm/j2_pulley.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.04 -0.04 0" rpy="0 0 0" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/upperarm/j2_pulley.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.04 -0.04 0" rpy="0 0 0" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="upper_structure">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/upperarm/upper_structure.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.042 -0.03 0" rpy="0 3.1415 0" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/upperarm/upper_structure.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.042 -0.03 0" rpy="0 3.1415 0" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="upper_bearing_mount">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/upperarm/upper_bearing_mount.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.042 -0.03 -0.00025" rpy="0 3.1415 0" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/upperarm/upper_bearing_mount.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.042 -0.03 -0.00025" rpy="0 3.1415 0" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="upper_housing">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/upperarm/upper_housing.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.028 -0.03 -0.062" rpy="0 0 0" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/upperarm/upper_housing.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.028 -0.03 -0.062" rpy="0 0 0" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-
-        <!--forearm-->
-        <link name="fore_pulley">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/j3_pulley.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.035 -0.035 0.0175" rpy="0 1.5708 0" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/j3_pulley.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.035 -0.035 0.0175" rpy="0 1.5708 0" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="fore_structure">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/forearm_structure.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.045 -0.043 0" rpy="3.1415 -1.5708 1.5708" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/forearm_structure.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.045 -0.043 0" rpy="3.1415 -1.5708 1.5708" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="fore_rotation">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/forearm_rotation.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.033 -0.0175 0" rpy="0 0 0" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/forearm_rotation.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.033 -0.0175 0" rpy="0 0 0" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="j5_bearing_adapter_1">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/j5_bearing_adapter.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.023 0.011 0.10525" rpy="1.5708 1.5708 0" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/j5_bearing_adapter.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.023 0.011 0.10525" rpy="1.5708 1.5708 0" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="j5_bearing_adapter_2">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/j5_bearing_adapter.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.023 -0.011 0.09525" rpy="-1.5708 1.5708 0" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/j5_bearing_adapter.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0.023 -0.011 0.09525" rpy="-1.5708 1.5708 0" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-        <link name="j6_housing">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/j6_housing.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.01385 -0.01085 -0.02" rpy="0 0 0" />
-                        <material name="white" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/j6_housing.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="-0.01385 -0.01085 -0.02" rpy="0 0 0" />
-                        <material name="white" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-
-        <!--end effector-->
-        <link name="j6_nema8">
-                <visual>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/j6_nema8.stl" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0 0 0" rpy="0 0 0" />
-                        <material name="red" />
-                </visual>
-                <collision>
-                        <geometry>
-                                <mesh filename="package://arm_description/model/meshes/forearm/j6_nema8.dae" scale ="0.001 0.001 0.001"/>
-                        </geometry>
-                        <origin xyz="0 0 0" rpy="0 0 0" />
-                        <material name="red" />
-                </collision>
-                <inertial>
-                        <origin xyz="0 0 0" />
-                        <mass value="1" />		
-                        <inertia ixx="0.0001873" ixy="0" ixz="0" iyy="0.000055" iyz="0" izz="0.0002283" />
-                </inertial>
-        </link>
-
-        <!--JOINTS-->
-        <!--stand joints-->
-        <joint name="stand_link_tube_joint" type="fixed">
-                <parent link="base_link" />
-                <child link="base_tube" />
-                <origin xyz="0 0 0.02" rpy="0 0 0" />
-        </joint>
-        <joint name="stand_tube_baseplate_joint" type="fixed">
-                <parent link="base_tube" />
-                <child link="baseplate" />
-                <origin xyz="0 0 0.048" rpy="0 0 0" />
-        </joint>
-
-        <!--base joints-->
-        <!--J1-->
-        <joint name="J1" type="continuous">
-                <parent link="baseplate"/>
-                <child link="base_pulley"/>
-                <origin xyz="0 0 0.016" rpy="0 0 0" />
-                <axis xyz="0 0 1"/>
-        </joint>
-        <joint name="base_pulley_structure_joint" type="fixed">
-                <parent link="base_pulley" />
-                <child link="base_structure" />
-                <origin xyz="0 0 0.009" rpy="0 0 0" />
-        </joint>
-        <joint name="base_structure_cover_joint" type="fixed">
-                <parent link="base_structure" />
-                <child link="base_structure_cover" />
-                <origin xyz="0 0 0" rpy="0 0 0" />
-        </joint>
-
-        <!--upperarm joints-->
-        <!--J2-->
-        <joint name="J2" type="revolute">
-                <parent link="base_structure"/>
-                <child link="upper_pulley"/>
-                <origin xyz="0.037 -0.0337 0.04" rpy="1.5708 0 3.1415" />
-                <limit lower="-0.349" upper="1.5708" effort="20" velocity="3"/>
-                <axis xyz="0 0 1"/>
-        </joint>
-        <joint name="upper_pulley_structure" type="fixed">
-                <parent link="upper_pulley" />
-                <child link="upper_structure" />
-                <origin xyz="0 0 0" rpy="0 0 0" />
-        </joint>
-        <joint name="upper_structure_mount" type="fixed">
-                <parent link="upper_structure" />
-                <child link="upper_bearing_mount" />
-                <origin xyz="0.031 0.03 0.042" rpy="0 1.5708 0" />
-        </joint>
-        <joint name="upper_mount_housing" type="fixed">
-                <parent link="upper_bearing_mount" />
-                <child link="upper_housing" />
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        </joint>      
-
-        <!--forearm joints-->
-        <!--J3-->
-        <joint name="J3" type="revolute">
-                <parent link="upper_structure"/>
-                <child link="fore_pulley"/>
-                <origin xyz="0.0 0.16 0.0" rpy="0 0 1.5708" />
-                <limit lower="-3.1415" upper="1.5708" effort="10" velocity="3"/>
-                <axis xyz="0 0 1"/>
-        </joint>
-        <joint name="fore_pully_structure_joint" type="fixed">
-                <parent link="fore_pulley" />
-                <child link="fore_structure" />
-                <origin xyz="0 0 0.01" rpy="0 0 0" />
-        </joint>
-
-        <!--J4-->
-        <joint name="J4" type="revolute">
-                <parent link="fore_structure"/>
-                <child link="fore_rotation"/>
-                <origin xyz="0.015 0.035 0.0245" rpy="0 1.5708 1.5708" />
-                <limit lower="-3.1415" upper="1.5708" effort="10" velocity="3"/>
-                <axis xyz="0 0 1"/>
-        </joint>
-        <joint name="fore_rotation_bearing_1" type="fixed">
-                <parent link="fore_rotation" />
-                <child link="j5_bearing_adapter_1" />
-                <origin xyz="0 0 0.01" rpy="0 0 0" />
-        </joint>
-        <joint name="fore_rotation_bearing_2" type="fixed">
-                <parent link="fore_rotation" />
-                <child link="j5_bearing_adapter_2" />
-                <origin xyz="0 0 0.02" rpy="0 0 0" />
-        </joint>
-
-        <!--J5-->
-        <joint name="J5" type="revolute">
-                <parent link="j5_bearing_adapter_1"/>
-                <child link="j6_housing"/>
-                <origin xyz="0 0 0.0925" rpy="0 0 0" />
-                <limit lower="-3.1415" upper="1.5708" effort="10" velocity="3"/>
-                <axis xyz="1 0 0"/>
-        </joint>
-
-        <!--end effector joints-->
-        <joint name="end_housing_nema8" type="fixed">
-                <parent link="j6_housing"/>
-                <child link="j6_nema8"/>
-                <origin xyz="0 0 0.0078" rpy="0 0 0" />
-        </joint>
-
-
-        <xacro:arm_gazebo/>
-        <xacro:arm_ros2_control/>
-        <!--include relevant to gazebo simulation-->
-        <!--<gazebo>-->
-        <!--        <plugin-->
-        <!--                filename="gz_ros2_control-system"-->
-        <!--                name="gz_ros2_control::GazeboSimROS2ControlPlugin">-->
-        <!--                <parameters>$(find arm_simulation)/config/control_bridge.yaml</parameters>-->
-        <!--        </plugin>-->
-        <!--        <plugin-->
-        <!--                filename="gz-sim-joint-state-publisher-system"-->
-        <!--                name="gz::sim::systems::JointStatePublisher">-->
-        <!--        </plugin>-->
-        <!--        <plugin>-->
-        <!--                filename="gz-sim-pose-publisher-system"-->
-        <!--                name="gz::sim::systems::PosePublisher">-->
-        <!--                <publish_link_pose>true</publish_link_pose>-->
-        <!--                <use_pose_vector_msg>true</use_pose_vector_msg>-->
-        <!--                <publish_nested_model_pose>true</publish_nested_model_pose>-->
-        <!--        </plugin>-->
-        <!---->
-        <!--        <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">-->
-        <!--                <render_engine>ogre2</render_engine>-->
-        <!--        </plugin>-->
-        <!--</gazebo>-->
-
-
-
-        <!--<xacro:include filename="$(find arm_description)/control/gazebo_sim_ros2_control.urdf.xacro" />-->
-        <!--<xacro:load_gazebo_sim_ros2_control_plugin-->
-        <!--        use_gazebo="$(arg use_gazebo)"/>-->
-        <!---->
-        <!--<xacro:include filename="$(find arm_description)/control/arm_ros2_control.urdf.xacro" />-->
-        <!--<xacro:arm_ros2_control-->
-        <!--        flange_link="$(arg flange_link)"-->
-        <!--        use_gazebo="$(arg use_gazebo)"/>-->
-        <!---->
+  <material name="white">
+    <color rgba="1 1 1 1" />
+  </material>
+  <link name="world"/>
+  <joint name="base_to_world" type="fixed">
+    <child link="base_link" />
+    <parent link="world" />
+    <origin xyz="0 0 0" rpy="0 0 0" />    
+  </joint> 
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.11268 0.013885 0.077154"
+        rpy="0 0 0" />
+      <mass
+        value="0.43666" />
+      <inertia
+        ixx="0.00027549"
+        ixy="4.2095E-06"
+        ixz="2.421E-10"
+        iyy="0.00079795"
+        iyz="-3.5553E-11"
+        izz="0.00059632" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="white">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link1">
+    <inertial>
+      <origin
+        xyz="0.0063779 0.04888 -0.0022943"
+        rpy="0 0 0" />
+      <mass
+        value="0.35633" />
+      <inertia
+        ixx="0.00017591"
+        ixy="2.2378E-05"
+        ixz="5.373E-05"
+        iyy="0.00032305"
+        iyz="4.5338E-06"
+        izz="0.00037059" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/link1.STL" />
+      </geometry>
+      <material
+        name="white">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J1"
+    type="continuous">
+    <origin
+      xyz="0.087103 -0.077154 0.054376"
+      rpy="1.5708 0 -0.17957" />
+    <parent
+      link="base_link" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="link2">
+    <inertial>
+      <origin
+        xyz="-0.0019445 0.065859 -0.034727"
+        rpy="0 0 0" />
+      <mass
+        value="0.26746" />
+      <inertia
+        ixx="0.00071684"
+        ixy="-3.9596E-05"
+        ixz="1.1486E-05"
+        iyy="8.2739E-05"
+        iyz="1.6945E-05"
+        izz="0.00077438" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/link2.STL" />
+      </geometry>
+      <material
+        name="white">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J2"
+    type="continuous">
+    <origin
+      xyz="-0.0383525749921799 0.0583000000000001 -0.0013208705506468"
+      rpy="0.0114835938093404 -0.000363602890144003 0.0633037833578822" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0.178603115585449 0 0.983921199641095" />
+  </joint>
+  <link
+    name="link3">
+    <inertial>
+      <origin
+        xyz="0.0130563478238648 0.00105076957686756 0.00197573396878213"
+        rpy="0 0 0" />
+      <mass
+        value="0.222311320377134" />
+      <inertia
+        ixx="9.15294723513773E-05"
+        ixy="-2.93868065975673E-06"
+        ixz="5.36688667027622E-06"
+        iyy="0.00012003016865184"
+        iyz="-5.92765685832411E-06"
+        izz="0.000140784486113707" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/link3.STL" />
+      </geometry>
+      <material
+        name="white">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J3"
+    type="continuous">
+    <origin
+      xyz="0.01012184118035 0.159668946677294 -0.00183733450496954"
+      rpy="-0.0341579908525323 -0.00324248866976051 -0.189267104095329" />
+    <parent
+      link="link2" />
+    <child
+      link="link3" />
+    <axis
+      xyz="0.178603115585449 0 0.983921199641095" />
+  </joint>
+  <link
+    name="link4">
+    <inertial>
+      <origin
+        xyz="0.00802792604442943 0.00104408266558731 -0.00105833882848673"
+        rpy="0 0 0" />
+      <mass
+        value="0.1696257012172" />
+      <inertia
+        ixx="5.17820793133401E-05"
+        ixy="-6.63726230268935E-06"
+        ixz="8.90032415343836E-06"
+        iyy="0.000101876628194636"
+        iyz="1.17168186802823E-06"
+        izz="9.3966015439911E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/link4.STL" />
+      </geometry>
+      <material
+        name="white">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/link4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J4"
+    type="continuous">
+    <origin
+      xyz="-3.63625649351731E-05 0.0148771771133325 0.0105252497783941"
+      rpy="0.0192434154802188 0.00255235780533698 -0.00346944801670467" />
+    <parent
+      link="link3" />
+    <child
+      link="link4" />
+    <axis
+      xyz="0.97586466350816 0.127708020083281 -0.17714067890384" />
+  </joint>
+  <link
+    name="link5">
+    <inertial>
+      <origin
+        xyz="0.00207136926136327 0.00132324610517903 -0.000396911101235978"
+        rpy="0 0 0" />
+      <mass
+        value="0.0179895273320859" />
+      <inertia
+        ixx="2.01072029683863E-06"
+        ixy="-3.67044819195393E-07"
+        ixz="2.26773043949782E-08"
+        iyy="2.36455919952921E-06"
+        iyz="6.0347923268703E-08"
+        izz="2.09143498833267E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/link5.STL" />
+      </geometry>
+      <material
+        name="white">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/link5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J5"
+    type="continuous">
+    <origin
+      xyz="-0.135560517031385 -0.0176394821004389 0.0246051802150107"
+      rpy="-3.01860336767631 0.324554663782284 0.719451490827395" />
+    <parent
+      link="link4" />
+    <child
+      link="link5" />
+    <axis
+      xyz="0.176090142676508 0.0195610841602276 0.98417967142115" />
+  </joint>
+  <link
+    name="ee">
+    <inertial>
+      <origin
+        xyz="0.00036692 -0.00026843 0.027707"
+        rpy="0 0 0" />
+      <mass
+        value="0.027464" />
+      <inertia
+        ixx="9.1511E-06"
+        ixy="-9.3123E-13"
+        ixz="3.3145E-14"
+        iyy="5.0332E-06"
+        iyz="4.6816E-10"
+        izz="1.1896E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/ee.STL" />
+      </geometry>
+      <material
+        name="white">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/ee.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J6"
+    type="continuous">
+    <origin
+      xyz="-0.0199666324199864 -0.0127552190119366 0.00382596102472059"
+      rpy="-1.41021344284507 -0.0773897000977449 2.12675451737731" />
+    <parent
+      link="link5" />
+    <child
+      link="ee" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="fingerL">
+    <inertial>
+      <origin
+        xyz="-0.028029 -0.037415 0.019963"
+        rpy="0 0 0" />
+      <mass
+        value="0.0069323" />
+      <inertia
+        ixx="1.8434E-06"
+        ixy="-4.0758E-07"
+        ixz="1.2068E-07"
+        iyy="9.8243E-07"
+        iyz="3.6975E-07"
+        izz="1.7261E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/fingerL.STL" />
+      </geometry>
+      <material
+        name="white">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/fingerL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JLeft"
+    type="prismatic">
+    <origin
+      xyz="-0.025364 -0.0020424 0.02375"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="ee" />
+    <child
+      link="fingerL" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0.025"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="fingerR">
+    <inertial>
+      <origin
+        xyz="-0.028029 -0.041361 0.0093632"
+        rpy="0 0 0" />
+      <mass
+        value="0.0069323" />
+      <inertia
+        ixx="1.8434E-06"
+        ixy="-4.2498E-07"
+        ixz="8.6499E-09"
+        iyy="8.4587E-07"
+        iyz="1.285E-07"
+        izz="1.8626E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/fingerR.STL" />
+      </geometry>
+      <material
+        name="white">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/model/meshes/fingerR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JRight"
+    type="prismatic">
+    <origin
+      xyz="0.026636 0.0014336 0.02375"
+      rpy="-1.8383 0 1.5708" />
+    <parent
+      link="ee" />
+    <child
+      link="fingerR" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0.025"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <xacro:arm_gazebo/>
+  <xacro:arm_ros2_control/>
 </robot>

@@ -23,15 +23,15 @@ def generate_launch_description():
     world_file = os.path.join(
         sim_pkg_path,
         'worlds',
-        'arm_word.sdf'
+        'arm_world.sdf'
     )
 
-    # world path
-    world_file = os.path.join(
-        sim_pkg_path,
-        'worlds',
-        'arm_solo.sdf'
-    )
+    # # world path
+    # world_file = os.path.join(
+    #     sim_pkg_path,
+    #     'worlds',
+    #     'arm_solo.sdf'
+    # )
 
     # Set gazebo sim resource path
     gazebo_resource_path = SetEnvironmentVariable(
@@ -50,17 +50,8 @@ def generate_launch_description():
                          'gz_sim.launch.py'
                          )
         ),
-        launch_arguments=[('gz_args', [world_file, ' -v 4', ' -r'])]
-    )
-
-    jsp = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(desc_pkg_path,
-                         'launch',
-                         'jsp.launch.py'
-                         )
-        ),
-        launch_arguments={'jsp_gui': 'false'}.items()
+        launch_arguments=[('gz_args', [world_file, ' -v 4', ' -r']),
+                          ('use_sim_time', 'true')]
     )
 
     # state_publisher = IncludeLaunchDescription(
@@ -79,7 +70,18 @@ def generate_launch_description():
                          'launch',
                          'rviz.launch.py'
                          )
-        )
+        ),
+        launch_arguments={'use_sim_time': 'true'}.items()
+    )
+
+    jsp = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(desc_pkg_path,
+                         'launch',
+                         'jsp.launch.py'
+                         )
+        ),
+        launch_arguments={'jsp_gui': 'false'}.items()
     )
 
     # bridge = IncludeLaunchDescription(
@@ -114,7 +116,7 @@ def generate_launch_description():
                    # '-topic', '/robot_description'
                    '-x', '0.0',
                    '-y', '0.0',
-                   '-z', '0.0',
+                   '-z', '1.04',
                    '-R', '0.0',
                    '-P', '0.0',
                    '-Y', '0.0',
@@ -123,13 +125,21 @@ def generate_launch_description():
         output='screen',
     )
 
+    bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=['/image_raw@sensor_msgs/msg/Image@gz.msgs.Image'], 
+        output='screen'
+    )
+
     # state pub
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='both',
-        parameters=[params]
+        parameters=[params,
+                    {'use_sim_time': True}]
     )
 
     load_joint_state_controller = ExecuteProcess(
@@ -157,17 +167,23 @@ def generate_launch_description():
                 on_exit=[load_joint_state_controller],
             )
         ),
+        # RegisterEventHandler(
+        #     event_handler=OnProcessExit(
+        #        target_action=load_joint_state_controller,
+        #        on_exit=[load_forward_position_controller]
+        #     )
+        # ),
         RegisterEventHandler(
             event_handler=OnProcessExit(
                target_action=load_joint_state_controller,
-               on_exit=[load_forward_position_controller,
-                        load_arm_controller],
+               on_exit=[load_arm_controller],
             )
         ),
         gazebo_resource_path,
         gz_sim,
         robot_state_publisher,
         spawn_robot,
-        # rviz,
+        bridge,
+        rviz,
         jsp
     ])

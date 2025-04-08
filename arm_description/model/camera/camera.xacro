@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="delirobo" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find robot_description)/urdf/camera/camera.gazebo"/>
+  <xacro:include filename="$(find arm_description)/model/camera/camera.gazebo"/>
 
   <xacro:macro name="camera_v0" params="parent *joint_origin">
 	<joint name="camera_joint" type="fixed">
@@ -13,12 +13,12 @@
 	<link name="camera_link">
 	  <visual>
 		<geometry>
-		  <mesh filename="package://robot_description/meshes/visual/camera.dae"/>
+			<mesh filename="package://arm_description/model/meshes/camera/camera.dae"/>
 		</geometry>
 	  </visual>
 	  <collision>
 		<geometry>
-		  <mesh filename="package://robot_description/meshes/collision/camera.stl"/>
+			<mesh filename="package://arm_description/model/meshes/camera/camera.stl"/>
 		</geometry>
 	  </collision>
 	  <inertial>

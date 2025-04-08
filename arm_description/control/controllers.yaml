@@ -1,11 +1,14 @@
 controller_manager:
   ros__parameters:
-    update_rate: 1000
+    update_rate: 100
 
     forward_position_controller:
       type: forward_command_controller/ForwardCommandController
 
     arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    ee_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
     joint_state_broadcaster:
@@ -19,6 +22,7 @@ forward_position_controller:
       - J3
       - J4
       - J5
+      - J6
     interface_name: position
     command_interfaces:
       - position
@@ -34,6 +38,20 @@ arm_controller:
       - J3
       - J4
       - J5
+      - J6
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    open_loop_control: false
+    allow_integration_in_goal_trajectories: true
+    allow_nonzero_velocity_at_trajectory_end: true
+
+ee_controller:
+  ros__parameters:
+    joints:
+      - JLeft
+      - JRight
     command_interfaces:
       - position
     state_interfaces:
