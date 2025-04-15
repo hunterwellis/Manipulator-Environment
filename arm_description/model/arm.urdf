@@ -83,9 +83,8 @@
       </geometry>
     </collision>
   </link>
-  <joint
-    name="J1"
-    type="continuous">
+  <joint name="J1" type="revolute">
+    <limit lower="-3.1415" upper="3.1415" effort="1" velocity="1" />
     <origin
       xyz="0.087103 -0.077154 0.054376"
       rpy="1.5708 0 -0.17957" />

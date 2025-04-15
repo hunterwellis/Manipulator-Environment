@@ -70,7 +70,7 @@
             <joint name="JLeft">
                 <command_interface name="position">
                     <param name="min">0</param>
-                    <param name="max">0.025</param>
+                    <param name="max">1</param>
                 </command_interface>
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
@@ -80,7 +80,7 @@
             <joint name="JRight">
                 <command_interface name="position">
                     <param name="min">0</param>
-                    <param name="max">0.025</param>
+                    <param name="max">1</param>
                 </command_interface>
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>

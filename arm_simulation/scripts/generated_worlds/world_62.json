@@ -1,0 +1,102 @@
+[
+  {
+    "name": "cube_l_0",
+    "type": "cube_l",
+    "position": {
+      "x": 0.111,
+      "y": -0.012,
+      "z": 1.05
+    },
+    "rotation": {
+      "roll": 0.0,
+      "pitch": 0.0,
+      "yaw": 4.08
+    },
+    "color": {
+      "r": 0.56,
+      "g": 0.75,
+      "b": 0.22,
+      "a": 1.0
+    }
+  },
+  {
+    "name": "cylinder_l_1",
+    "type": "cylinder_l",
+    "position": {
+      "x": 0.442,
+      "y": 0.079,
+      "z": 1.05
+    },
+    "rotation": {
+      "roll": 0.0,
+      "pitch": 0.0,
+      "yaw": 1.45
+    },
+    "color": {
+      "r": 0.33,
+      "g": 0.76,
+      "b": 0.12,
+      "a": 1.0
+    }
+  },
+  {
+    "name": "cylinder_s_2",
+    "type": "cylinder_s",
+    "position": {
+      "x": 0.303,
+      "y": 0.162,
+      "z": 1.05
+    },
+    "rotation": {
+      "roll": 0.0,
+      "pitch": 0.0,
+      "yaw": 3.96
+    },
+    "color": {
+      "r": 0.57,
+      "g": 0.25,
+      "b": 0.6,
+      "a": 1.0
+    }
+  },
+  {
+    "name": "cylinder_m_3",
+    "type": "cylinder_m",
+    "position": {
+      "x": 0.389,
+      "y": 0.007,
+      "z": 1.05
+    },
+    "rotation": {
+      "roll": 0.0,
+      "pitch": 0.0,
+      "yaw": 1.08
+    },
+    "color": {
+      "r": 0.48,
+      "g": 0.51,
+      "b": 0.38,
+      "a": 1.0
+    }
+  },
+  {
+    "name": "cylinder_l_4",
+    "type": "cylinder_l",
+    "position": {
+      "x": 0.429,
+      "y": -0.135,
+      "z": 1.05
+    },
+    "rotation": {
+      "roll": 0.0,
+      "pitch": 0.0,
+      "yaw": 0.94
+    },
+    "color": {
+      "r": 0.71,
+      "g": 0.76,
+      "b": 0.96,
+      "a": 1.0
+    }
+  }
+]

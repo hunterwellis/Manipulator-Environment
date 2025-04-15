@@ -57,10 +57,10 @@ def generate_launch_description():
                               'model',
                               'arm.urdf.xacro')
 
-    doc = xacro.process_file(xacro_file, mappings={'use_sim' : 'true'})
+    doc = xacro.process_file(xacro_file, mappings={'use_sim': 'true'})
 
     robot_desc = doc.toprettyxml(indent='  ')
-    
+
     gz_spawn_entity = Node(
         package='ros_gz_sim',
         executable='create',

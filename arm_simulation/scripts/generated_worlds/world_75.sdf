@@ -1,0 +1,202 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="arm_world">
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics">
+      <engine>
+        <filename>libgz-physics-bullet-featherstone-plugin.so</filename>
+      </engine>
+    </plugin>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <gravity>0.0 0.0 -9.8</gravity>
+    <scene>
+      <shadows>false</shadows>
+    </scene>
+    <gui>
+      <camera name="user_camera">
+        <pose>0.75 -0.75 1.4 0 0.29 2.21</pose>
+      </camera>
+    </gui>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun</uri>
+    </include>
+    <model name="table">
+      <static>true</static>
+      <include>
+        <uri>model://table</uri>
+      </include>
+      <pose>0.29 0 0 0 0 1.5708</pose>
+    </model>
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="sphere_s_0">
+      <pose>0.1 -0.178 1.05 0 0 5.42</pose>
+      <link name="sphere_s_0_link">
+        <collision name="sphere_s_0_collision">
+          <geometry>
+            <sphere>
+              <radius>0.0125</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="sphere_s_0_visual">
+          <geometry>
+            <sphere>
+              <radius>0.0125</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.39 0.93 0.64 1</ambient>
+            <diffuse>0.39 0.93 0.64 1</diffuse>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>1</linear>
+          <angular>1</angular>
+        </velocity_decay>
+      </link>
+    </model>
+    <model name="cube_s_1">
+      <pose>0.438 -0.023 1.05 0 0 1.63</pose>
+      <link name="cube_s_1_link">
+        <collision name="cube_s_1_collision">
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.025</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="cube_s_1_visual">
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.025</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.19 0.65 0.65 1</ambient>
+            <diffuse>0.19 0.65 0.65 1</diffuse>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>1</linear>
+          <angular>1</angular>
+        </velocity_decay>
+      </link>
+    </model>
+    <model name="sphere_m_2">
+      <pose>0.385 -0.274 1.05 0 0 4.71</pose>
+      <link name="sphere_m_2_link">
+        <collision name="sphere_m_2_collision">
+          <geometry>
+            <sphere>
+              <radius>0.025</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="sphere_m_2_visual">
+          <geometry>
+            <sphere>
+              <radius>0.025</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.94 0.57 0.75 1</ambient>
+            <diffuse>0.94 0.57 0.75 1</diffuse>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>1</linear>
+          <angular>1</angular>
+        </velocity_decay>
+      </link>
+    </model>
+    <model name="sphere_l_3">
+      <pose>0.111 -0.265 1.05 0 0 1.99</pose>
+      <link name="sphere_l_3_link">
+        <collision name="sphere_l_3_collision">
+          <geometry>
+            <sphere>
+              <radius>0.05</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="sphere_l_3_visual">
+          <geometry>
+            <sphere>
+              <radius>0.05</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.27 0.42 0.42 1</ambient>
+            <diffuse>0.27 0.42 0.42 1</diffuse>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>1</linear>
+          <angular>1</angular>
+        </velocity_decay>
+      </link>
+    </model>
+    <model name="sphere_s_4">
+      <pose>0.169 -0.148 1.05 0 0 1.65</pose>
+      <link name="sphere_s_4_link">
+        <collision name="sphere_s_4_collision">
+          <geometry>
+            <sphere>
+              <radius>0.0125</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="sphere_s_4_visual">
+          <geometry>
+            <sphere>
+              <radius>0.0125</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.24 0.87 0.88 1</ambient>
+            <diffuse>0.24 0.87 0.88 1</diffuse>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>1</linear>
+          <angular>1</angular>
+        </velocity_decay>
+      </link>
+    </model>
+  </world>
+</sdf>

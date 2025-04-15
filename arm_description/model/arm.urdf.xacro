@@ -10,7 +10,7 @@
   <xacro:include filename="$(find arm_description)/model/camera/camera.xacro"/>
 
   <xacro:camera_v0 parent="base_link">
-    <origin xyz="0 0 0.7" rpy="0 ${PI/2} 0"/>
+    <origin xyz="-0.1 0 0.7" rpy="0 ${PI/2} ${PI}"/>
   </xacro:camera_v0>
   <xacro:camera_gazebo_v0/>
 
@@ -21,7 +21,7 @@
   <joint name="base_to_world" type="fixed">
     <child link="base_link" />
     <parent link="world" />
-    <origin xyz="0 0 0" rpy="0 0 0" />    
+    <origin xyz="0.15 0 0" rpy="0 0 ${PI}" />    
   </joint> 
   <link
     name="base_link">
@@ -420,8 +420,8 @@
     <limit
       lower="0"
       upper="0.025"
-      effort="0"
-      velocity="0" />
+      effort="10"
+      velocity="0.1" />
   </joint>
   <link
     name="fingerR">
@@ -476,9 +476,24 @@
     <limit
       lower="0"
       upper="0.025"
-      effort="0"
-      velocity="0" />
+      effort="10"
+      velocity="0.1" />
   </joint>
+
+  <gazebo reference="fingerL">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>10.0</kd>
+    <material>Gazebo/White</material>
+  </gazebo>
+  <gazebo reference="fingerR">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>10.0</kd>
+    <material>Gazebo/White</material>
+  </gazebo>
   <xacro:arm_gazebo/>
   <xacro:arm_ros2_control/>
 </robot>

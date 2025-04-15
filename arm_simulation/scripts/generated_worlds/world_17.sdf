@@ -1,0 +1,208 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="arm_world">
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics">
+      <engine>
+        <filename>libgz-physics-bullet-featherstone-plugin.so</filename>
+      </engine>
+    </plugin>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <gravity>0.0 0.0 -9.8</gravity>
+    <scene>
+      <shadows>false</shadows>
+    </scene>
+    <gui>
+      <camera name="user_camera">
+        <pose>0.75 -0.75 1.4 0 0.29 2.21</pose>
+      </camera>
+    </gui>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun</uri>
+    </include>
+    <model name="table">
+      <static>true</static>
+      <include>
+        <uri>model://table</uri>
+      </include>
+      <pose>0.29 0 0 0 0 1.5708</pose>
+    </model>
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="cylinder_m_0">
+      <pose>0.228 -0.194 1.05 0 0 1.76</pose>
+      <link name="cylinder_m_0_link">
+        <collision name="cylinder_m_0_collision">
+          <geometry>
+            <cylinder>
+              <radius>0.025</radius>
+              <length>0.025</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="cylinder_m_0_visual">
+          <geometry>
+            <cylinder>
+              <radius>0.025</radius>
+              <length>0.025</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.84 0.49 0.7 1</ambient>
+            <diffuse>0.84 0.49 0.7 1</diffuse>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>1</linear>
+          <angular>1</angular>
+        </velocity_decay>
+      </link>
+    </model>
+    <model name="cylinder_l_1">
+      <pose>0.447 0.072 1.05 0 0 1.44</pose>
+      <link name="cylinder_l_1_link">
+        <collision name="cylinder_l_1_collision">
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.05</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="cylinder_l_1_visual">
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.05</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.34 0.45 0.6 1</ambient>
+            <diffuse>0.34 0.45 0.6 1</diffuse>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>1</linear>
+          <angular>1</angular>
+        </velocity_decay>
+      </link>
+    </model>
+    <model name="cube_s_2">
+      <pose>0.167 -0.3 1.05 0 0 6.15</pose>
+      <link name="cube_s_2_link">
+        <collision name="cube_s_2_collision">
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.025</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="cube_s_2_visual">
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.025</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.51 0.91 0.76 1</ambient>
+            <diffuse>0.51 0.91 0.76 1</diffuse>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>1</linear>
+          <angular>1</angular>
+        </velocity_decay>
+      </link>
+    </model>
+    <model name="cylinder_s_3">
+      <pose>0.344 0.025 1.05 0 0 3.52</pose>
+      <link name="cylinder_s_3_link">
+        <collision name="cylinder_s_3_collision">
+          <geometry>
+            <cylinder>
+              <radius>0.0125</radius>
+              <length>0.0125</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="cylinder_s_3_visual">
+          <geometry>
+            <cylinder>
+              <radius>0.0125</radius>
+              <length>0.0125</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.28 0.37 0.92 1</ambient>
+            <diffuse>0.28 0.37 0.92 1</diffuse>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>1</linear>
+          <angular>1</angular>
+        </velocity_decay>
+      </link>
+    </model>
+    <model name="sphere_l_4">
+      <pose>0.436 -0.231 1.05 0 0 2.45</pose>
+      <link name="sphere_l_4_link">
+        <collision name="sphere_l_4_collision">
+          <geometry>
+            <sphere>
+              <radius>0.05</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="sphere_l_4_visual">
+          <geometry>
+            <sphere>
+              <radius>0.05</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.81 0.24 0.15 1</ambient>
+            <diffuse>0.81 0.24 0.15 1</diffuse>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>1</linear>
+          <angular>1</angular>
+        </velocity_decay>
+      </link>
+    </model>
+  </world>
+</sdf>

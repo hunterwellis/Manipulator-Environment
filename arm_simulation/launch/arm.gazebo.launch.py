@@ -11,8 +11,6 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 
 def generate_launch_description():
-
-    # package paths
     desc_pkg_path = get_package_share_directory('arm_description')
     sim_pkg_path = get_package_share_directory('arm_simulation')
     ros_gz_pkg = get_package_share_directory('ros_gz_sim')
@@ -23,7 +21,8 @@ def generate_launch_description():
     world_file = os.path.join(
         sim_pkg_path,
         'worlds',
-        'arm_world.sdf'
+        'dataset_worlds',
+        'world_0.sdf'
     )
 
     # # world path
@@ -101,7 +100,7 @@ def generate_launch_description():
     #     )
     # )
 
-    doc = xacro.process_file(urdf_path, mappings={'use_sim' : 'true'})
+    doc = xacro.process_file(urdf_path, mappings={'use_sim': 'true'})
 
     robot_desc = doc.toprettyxml(indent='  ')
 
@@ -128,7 +127,17 @@ def generate_launch_description():
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
-        arguments=['/image_raw@sensor_msgs/msg/Image@gz.msgs.Image'], 
+        arguments=['/image_raw@sensor_msgs/msg/Image@gz.msgs.Image'],
+        output='screen'
+    )
+
+    clock_bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        parameters=[{
+            'config_file': os.path.join(sim_pkg_path, 'config', 'ros_gz_bridge.yaml'),
+            'qos_overrides./tf_static.publisher.durability': 'transient_local',
+        }],
         output='screen'
     )
 
@@ -160,6 +169,18 @@ def generate_launch_description():
         output='screen'
     )
 
+    load_ee_controller = ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
+             'ee_controller'],
+        output='screen'
+    )
+
+    # load_gripper_controller = ExecuteProcess(
+    #     cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
+    #          'gripper_controller'],
+    #     output='screen'
+    # )
+
     return LaunchDescription([
         RegisterEventHandler(
             event_handler=OnProcessExit(
@@ -169,7 +190,7 @@ def generate_launch_description():
         ),
         # RegisterEventHandler(
         #     event_handler=OnProcessExit(
-        #        target_action=load_joint_state_controller,
+        #        target_action=load_ee_controller,
         #        on_exit=[load_forward_position_controller]
         #     )
         # ),
@@ -179,11 +200,18 @@ def generate_launch_description():
                on_exit=[load_arm_controller],
             )
         ),
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+               target_action=load_arm_controller,
+               on_exit=[load_ee_controller],
+            )
+        ),
         gazebo_resource_path,
         gz_sim,
         robot_state_publisher,
         spawn_robot,
         bridge,
-        rviz,
+        clock_bridge,
+        # rviz,
         jsp
     ])
