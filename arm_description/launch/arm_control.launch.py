@@ -6,7 +6,7 @@ def generate_launch_description():
 
     joint_trajectory_controller = Node(
         package='arm_description',
-        executable='arm_control.py',
+        executable='trajectory_control.py',
         name='joint_trajectory_controller'
     )
 

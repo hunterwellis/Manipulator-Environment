@@ -39,6 +39,7 @@ install(
 install(
   PROGRAMS
   control/arm_control.py
+  control/trajectory_control.py
   DESTINATION
   lib/${PROJECT_NAME}/
 )
