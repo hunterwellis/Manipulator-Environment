@@ -1,6 +1,6 @@
 # Robot Arm Manipulator Environment
 
-ROS2 packages for simulating and training a 6-axis robot arm (modified version of an [open-source hardware design by tw2ka](https://www.dropbox.com/scl/fi/mgowac0a7bwx7u2pcz12b/Arduino-robot-arm-files-step.zip?rlkey=3cpy6x4wcpfr1s548s7qxxex5&e=2&dl=0) with custom electronics and firmware) for reinforcement learning tasks.
+ROS2 packages for simulating a 6-axis robot arm (modified version of an [open-source hardware design by tw2ka](https://www.dropbox.com/scl/fi/mgowac0a7bwx7u2pcz12b/Arduino-robot-arm-files-step.zip?rlkey=3cpy6x4wcpfr1s548s7qxxex5&e=2&dl=0) with custom electronics and firmware) for reinforcement learning tasks.
 
 ## Overview
 This repo contains a set of ROS2 packages used to control and simulate a 6-Axis robotic arm for use in the [COOL Autonomy Lab](https://coolautonomylab.github.io/). A Gazebo simulation environment is used to simulate the robotic arm and interface with ROS2 controllers. Packages/Launch files are also available for visualization, serial control, and computer vision.
