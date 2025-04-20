@@ -1,101 +1,101 @@
 [
   {
-    "name": "sphere_m_0",
-    "type": "sphere_m",
+    "name": "cube_m_0",
+    "type": "cube_m",
     "position": {
-      "x": 0.477,
-      "y": -0.152,
+      "x": 0.329,
+      "y": 0.254,
       "z": 1.05
     },
     "rotation": {
       "roll": 0.0,
       "pitch": 0.0,
-      "yaw": 2.7
+      "yaw": 5.64
     },
     "color": {
-      "r": 0.16,
-      "g": 0.16,
-      "b": 0.88,
+      "r": 0.97,
+      "g": 0.81,
+      "b": 0.72,
       "a": 1.0
     }
   },
   {
-    "name": "sphere_m_1",
-    "type": "sphere_m",
+    "name": "cube_l_1",
+    "type": "cube_l",
     "position": {
-      "x": 0.276,
-      "y": 0.061,
+      "x": 0.363,
+      "y": 0.113,
       "z": 1.05
     },
     "rotation": {
       "roll": 0.0,
       "pitch": 0.0,
-      "yaw": 2.49
+      "yaw": 4.96
     },
     "color": {
-      "r": 0.68,
-      "g": 0.11,
-      "b": 0.86,
-      "a": 1.0
-    }
-  },
-  {
-    "name": "sphere_s_2",
-    "type": "sphere_s",
-    "position": {
-      "x": 0.4,
-      "y": -0.103,
-      "z": 1.05
-    },
-    "rotation": {
-      "roll": 0.0,
-      "pitch": 0.0,
-      "yaw": 2.79
-    },
-    "color": {
-      "r": 0.5,
+      "r": 0.76,
       "g": 0.68,
-      "b": 0.57,
+      "b": 0.95,
       "a": 1.0
     }
   },
   {
-    "name": "cylinder_m_3",
-    "type": "cylinder_m",
+    "name": "sphere_m_2",
+    "type": "sphere_m",
     "position": {
-      "x": 0.426,
-      "y": 0.19,
+      "x": 0.206,
+      "y": 0.292,
       "z": 1.05
     },
     "rotation": {
       "roll": 0.0,
       "pitch": 0.0,
-      "yaw": 5.97
+      "yaw": 0.69
     },
     "color": {
-      "r": 0.38,
-      "g": 0.7,
-      "b": 0.75,
+      "r": 0.13,
+      "g": 0.95,
+      "b": 1.0,
       "a": 1.0
     }
   },
   {
-    "name": "sphere_s_4",
-    "type": "sphere_s",
+    "name": "sphere_l_3",
+    "type": "sphere_l",
     "position": {
-      "x": 0.146,
-      "y": 0.111,
+      "x": 0.269,
+      "y": -0.093,
       "z": 1.05
     },
     "rotation": {
       "roll": 0.0,
       "pitch": 0.0,
-      "yaw": 5.04
+      "yaw": 3.57
     },
     "color": {
-      "r": 0.71,
-      "g": 0.78,
-      "b": 0.86,
+      "r": 0.6,
+      "g": 0.58,
+      "b": 0.1,
+      "a": 1.0
+    }
+  },
+  {
+    "name": "cube_s_4",
+    "type": "cube_s",
+    "position": {
+      "x": 0.481,
+      "y": -0.255,
+      "z": 1.05
+    },
+    "rotation": {
+      "roll": 0.0,
+      "pitch": 0.0,
+      "yaw": 4.53
+    },
+    "color": {
+      "r": 0.91,
+      "g": 0.23,
+      "b": 0.14,
       "a": 1.0
     }
   }

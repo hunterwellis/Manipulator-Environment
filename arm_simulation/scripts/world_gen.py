@@ -204,9 +204,32 @@ def _include_table():
     return model
 
 
+def _shape_tag_from_obj_type(obj_type):
+    if "cube" in obj_type:
+        return "box"
+    elif "sphere" in obj_type:
+        return "sphere"
+    elif "cylinder" in obj_type:
+        return "cylinder"
+    else:
+        raise ValueError(f"Unknown object type: {obj_type}")
+
+
+def _get_dimensions(obj_type):
+    # Assign consistent sizes
+    if "cube" in obj_type:
+        return 0.05, 0.05  # radius (for box: half-size), height
+    elif "sphere" in obj_type:
+        return 0.025, 0.025  # radius, dummy height
+    elif "cylinder" in obj_type:
+        return 0.025, 0.025  # radius, length
+    else:
+        raise ValueError(f"Unknown object type: {obj_type}")
+
 
 def _add_custom_object(world, obj_type, name, pose_str, color_str):
-    shape_type, size = OBJECT_GEOMETRY[obj_type]
+    geometry_type, size_str = OBJECT_GEOMETRY[obj_type]
+    size_vals = list(map(float, size_str.split()))
 
     model = SubElement(world, 'model', name=name)
     pose = SubElement(model, 'pose')
@@ -214,53 +237,81 @@ def _add_custom_object(world, obj_type, name, pose_str, color_str):
 
     link = SubElement(model, 'link', name=f"{name}_link")
 
-    # Collision
+    # === Inertial ===
+    inertial = SubElement(link, 'inertial')
+    mass = SubElement(inertial, 'mass')
+    mass.text = "0.05"  # Fixed for now or calculate from size if you want
+    inertia = SubElement(inertial, 'inertia')
+    SubElement(inertia, 'ixx').text = "2.04e-7"
+    SubElement(inertia, 'iyy').text = "2.04e-7"
+    SubElement(inertia, 'izz').text = "3.9e-8"
+    SubElement(inertia, 'ixy').text = "0"
+    SubElement(inertia, 'ixz').text = "0"
+    SubElement(inertia, 'iyz').text = "0"
+
+    # === Collision ===
     collision = SubElement(link, 'collision', name=f"{name}_collision")
     geometry = SubElement(collision, 'geometry')
-    shape = SubElement(geometry, shape_type)
-    if shape_type == "box":
-        size_el = SubElement(shape, 'size')
-        size_el.text = size
-    elif shape_type == "sphere":
-        radius_el = SubElement(shape, 'radius')
-        radius_el.text = size
-    elif shape_type == "cylinder":
-        radius, length = size.split()
-        radius_el = SubElement(shape, 'radius')
-        radius_el.text = radius
-        length_el = SubElement(shape, 'length')
-        length_el.text = length
+    shape = SubElement(geometry, geometry_type)
 
-    # Visual
+    if geometry_type == "box":
+        SubElement(shape, 'size').text = size_str
+    elif geometry_type == "sphere":
+        SubElement(shape, 'radius').text = size_str
+    elif geometry_type == "cylinder":
+        radius, length = size_vals
+        SubElement(shape, 'radius').text = str(radius)
+        SubElement(shape, 'length').text = str(length)
+
+    # Surface/friction/contact/bounce
+    surface = SubElement(collision, 'surface')
+    friction = SubElement(surface, 'friction')
+    ode = SubElement(friction, 'ode')
+    SubElement(ode, 'mu').text = "0.8"
+    SubElement(ode, 'mu2').text = "0.8"
+    SubElement(ode, 'fdir1').text = "0 0 1"
+    SubElement(ode, 'slip1').text = "0.001"
+    SubElement(ode, 'slip2').text = "0.001"
+
+    torsional = SubElement(friction, 'torsional')
+    SubElement(torsional, 'coefficient').text = "0.1"
+    SubElement(torsional, 'surface_radius').text = "0.015"
+    SubElement(torsional, 'use_patch_radius').text = "true"
+
+    contact = SubElement(surface, 'contact')
+    contact_ode = SubElement(contact, 'ode')
+    SubElement(contact_ode, 'kp').text = "1e5"
+    SubElement(contact_ode, 'kd').text = "10"
+    SubElement(contact_ode, 'max_vel').text = "0.1"
+    SubElement(contact_ode, 'min_depth').text = "0.001"
+    SubElement(contact_ode, 'soft_cfm').text = "0.01"
+    SubElement(contact_ode, 'soft_erp').text = "0.2"
+
+    bounce = SubElement(surface, 'bounce')
+    SubElement(bounce, 'restitution_coefficient').text = "0.2"
+    SubElement(bounce, 'threshold').text = "0.01"
+
+    # === Visual ===
     visual = SubElement(link, 'visual', name=f"{name}_visual")
     geometry_v = SubElement(visual, 'geometry')
-    shape_v = SubElement(geometry_v, shape_type)
-    if shape_type == "box":
-        size_el = SubElement(shape_v, 'size')
-        size_el.text = size
-    elif shape_type == "sphere":
-        radius_el = SubElement(shape_v, 'radius')
-        radius_el.text = size
-    elif shape_type == "cylinder":
-        radius, length = size.split()
-        radius_el = SubElement(shape_v, 'radius')
-        radius_el.text = radius
-        length_el = SubElement(shape_v, 'length')
-        length_el.text = length
+    shape_v = SubElement(geometry_v, geometry_type)
 
-    # Damping
-    velocity_decay = SubElement(link, 'velocity_decay')
-    linear = SubElement(velocity_decay, 'linear')
-    linear.text = "1"  # tweak as needed
-    angular = SubElement(velocity_decay, 'angular')
-    angular.text = "1"  # tweak as needed
+    if geometry_type == "box":
+        SubElement(shape_v, 'size').text = size_str
+    elif geometry_type == "sphere":
+        SubElement(shape_v, 'radius').text = size_str
+    elif geometry_type == "cylinder":
+        SubElement(shape_v, 'radius').text = str(radius)
+        SubElement(shape_v, 'length').text = str(length)
 
     material = SubElement(visual, 'material')
-    ambient = SubElement(material, 'ambient')
-    ambient.text = color_str
-    diffuse = SubElement(material, 'diffuse')
-    diffuse.text = color_str
+    SubElement(material, 'ambient').text = color_str
+    SubElement(material, 'diffuse').text = color_str
 
+    # === Damping ===
+    velocity_decay = SubElement(link, 'velocity_decay')
+    SubElement(velocity_decay, 'linear').text = "1"
+    SubElement(velocity_decay, 'angular').text = "1"
 
 def _include_ground():
     model = Element('model', name="ground_plane")

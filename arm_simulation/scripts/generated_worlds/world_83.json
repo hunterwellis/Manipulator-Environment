@@ -1,101 +1,101 @@
 [
   {
-    "name": "sphere_l_0",
-    "type": "sphere_l",
+    "name": "cube_l_0",
+    "type": "cube_l",
     "position": {
-      "x": 0.223,
-      "y": 0.252,
+      "x": 0.461,
+      "y": 0.295,
       "z": 1.05
     },
     "rotation": {
       "roll": 0.0,
       "pitch": 0.0,
-      "yaw": 4.7
+      "yaw": 3.03
     },
     "color": {
-      "r": 0.53,
-      "g": 0.98,
-      "b": 0.57,
+      "r": 0.64,
+      "g": 0.61,
+      "b": 0.31,
       "a": 1.0
     }
   },
   {
-    "name": "cylinder_s_1",
-    "type": "cylinder_s",
+    "name": "cube_m_1",
+    "type": "cube_m",
     "position": {
-      "x": 0.322,
-      "y": 0.095,
+      "x": 0.467,
+      "y": 0.254,
       "z": 1.05
     },
     "rotation": {
       "roll": 0.0,
       "pitch": 0.0,
-      "yaw": 0.1
+      "yaw": 0.4
+    },
+    "color": {
+      "r": 0.4,
+      "g": 0.74,
+      "b": 0.83,
+      "a": 1.0
+    }
+  },
+  {
+    "name": "sphere_l_2",
+    "type": "sphere_l",
+    "position": {
+      "x": 0.204,
+      "y": 0.284,
+      "z": 1.05
+    },
+    "rotation": {
+      "roll": 0.0,
+      "pitch": 0.0,
+      "yaw": 5.0
+    },
+    "color": {
+      "r": 0.95,
+      "g": 0.69,
+      "b": 0.15,
+      "a": 1.0
+    }
+  },
+  {
+    "name": "cylinder_m_3",
+    "type": "cylinder_m",
+    "position": {
+      "x": 0.236,
+      "y": 0.144,
+      "z": 1.05
+    },
+    "rotation": {
+      "roll": 0.0,
+      "pitch": 0.0,
+      "yaw": 5.0
+    },
+    "color": {
+      "r": 0.81,
+      "g": 0.61,
+      "b": 0.4,
+      "a": 1.0
+    }
+  },
+  {
+    "name": "sphere_m_4",
+    "type": "sphere_m",
+    "position": {
+      "x": 0.176,
+      "y": -0.116,
+      "z": 1.05
+    },
+    "rotation": {
+      "roll": 0.0,
+      "pitch": 0.0,
+      "yaw": 2.97
     },
     "color": {
       "r": 0.68,
-      "g": 0.9,
-      "b": 0.76,
-      "a": 1.0
-    }
-  },
-  {
-    "name": "cylinder_s_2",
-    "type": "cylinder_s",
-    "position": {
-      "x": 0.134,
-      "y": -0.018,
-      "z": 1.05
-    },
-    "rotation": {
-      "roll": 0.0,
-      "pitch": 0.0,
-      "yaw": 5.12
-    },
-    "color": {
-      "r": 0.29,
-      "g": 0.67,
-      "b": 0.67,
-      "a": 1.0
-    }
-  },
-  {
-    "name": "sphere_l_3",
-    "type": "sphere_l",
-    "position": {
-      "x": 0.289,
-      "y": 0.048,
-      "z": 1.05
-    },
-    "rotation": {
-      "roll": 0.0,
-      "pitch": 0.0,
-      "yaw": 0.97
-    },
-    "color": {
-      "r": 0.18,
-      "g": 0.99,
-      "b": 0.47,
-      "a": 1.0
-    }
-  },
-  {
-    "name": "cylinder_l_4",
-    "type": "cylinder_l",
-    "position": {
-      "x": 0.227,
-      "y": 0.189,
-      "z": 1.05
-    },
-    "rotation": {
-      "roll": 0.0,
-      "pitch": 0.0,
-      "yaw": 4.85
-    },
-    "color": {
-      "r": 0.43,
-      "g": 0.88,
-      "b": 0.98,
+      "g": 0.93,
+      "b": 0.27,
       "a": 1.0
     }
   }

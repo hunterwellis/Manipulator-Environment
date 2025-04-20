@@ -63,27 +63,66 @@
         </visual>
       </link>
     </model>
-    <model name="cylinder_l_0">
-      <pose>0.287 -0.133 1.05 0 0 1.96</pose>
-      <link name="cylinder_l_0_link">
-        <collision name="cylinder_l_0_collision">
+    <model name="sphere_m_0">
+      <pose>0.5 0.116 1.05 0 0 5.44</pose>
+      <link name="sphere_m_0_link">
+        <inertial>
+          <mass>0.05</mass>
+          <inertia>
+            <ixx>2.04e-7</ixx>
+            <iyy>2.04e-7</iyy>
+            <izz>3.9e-8</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="sphere_m_0_collision">
           <geometry>
-            <cylinder>
-              <radius>0.05</radius>
-              <length>0.05</length>
-            </cylinder>
+            <sphere>
+              <radius>0.025</radius>
+            </sphere>
           </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.8</mu>
+                <mu2>0.8</mu2>
+                <fdir1>0 0 1</fdir1>
+                <slip1>0.001</slip1>
+                <slip2>0.001</slip2>
+              </ode>
+              <torsional>
+                <coefficient>0.1</coefficient>
+                <surface_radius>0.015</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e5</kp>
+                <kd>10</kd>
+                <max_vel>0.1</max_vel>
+                <min_depth>0.001</min_depth>
+                <soft_cfm>0.01</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+              </ode>
+            </contact>
+            <bounce>
+              <restitution_coefficient>0.2</restitution_coefficient>
+              <threshold>0.01</threshold>
+            </bounce>
+          </surface>
         </collision>
-        <visual name="cylinder_l_0_visual">
+        <visual name="sphere_m_0_visual">
           <geometry>
-            <cylinder>
-              <radius>0.05</radius>
-              <length>0.05</length>
-            </cylinder>
+            <sphere>
+              <radius>0.025</radius>
+            </sphere>
           </geometry>
           <material>
-            <ambient>0.27 0.8 0.8 1</ambient>
-            <diffuse>0.27 0.8 0.8 1</diffuse>
+            <ambient>0.97 0.93 0.2 1</ambient>
+            <diffuse>0.97 0.93 0.2 1</diffuse>
           </material>
         </visual>
         <velocity_decay>
@@ -92,27 +131,68 @@
         </velocity_decay>
       </link>
     </model>
-    <model name="cylinder_l_1">
-      <pose>0.107 -0.031 1.05 0 0 1.75</pose>
-      <link name="cylinder_l_1_link">
-        <collision name="cylinder_l_1_collision">
+    <model name="cylinder_m_1">
+      <pose>0.487 -0.129 1.05 0 0 3.01</pose>
+      <link name="cylinder_m_1_link">
+        <inertial>
+          <mass>0.05</mass>
+          <inertia>
+            <ixx>2.04e-7</ixx>
+            <iyy>2.04e-7</iyy>
+            <izz>3.9e-8</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="cylinder_m_1_collision">
           <geometry>
             <cylinder>
-              <radius>0.05</radius>
-              <length>0.05</length>
+              <radius>0.025</radius>
+              <length>0.025</length>
             </cylinder>
           </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.8</mu>
+                <mu2>0.8</mu2>
+                <fdir1>0 0 1</fdir1>
+                <slip1>0.001</slip1>
+                <slip2>0.001</slip2>
+              </ode>
+              <torsional>
+                <coefficient>0.1</coefficient>
+                <surface_radius>0.015</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e5</kp>
+                <kd>10</kd>
+                <max_vel>0.1</max_vel>
+                <min_depth>0.001</min_depth>
+                <soft_cfm>0.01</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+              </ode>
+            </contact>
+            <bounce>
+              <restitution_coefficient>0.2</restitution_coefficient>
+              <threshold>0.01</threshold>
+            </bounce>
+          </surface>
         </collision>
-        <visual name="cylinder_l_1_visual">
+        <visual name="cylinder_m_1_visual">
           <geometry>
             <cylinder>
-              <radius>0.05</radius>
-              <length>0.05</length>
+              <radius>0.025</radius>
+              <length>0.025</length>
             </cylinder>
           </geometry>
           <material>
-            <ambient>0.44 0.89 0.37 1</ambient>
-            <diffuse>0.44 0.89 0.37 1</diffuse>
+            <ambient>0.3 0.82 0.57 1</ambient>
+            <diffuse>0.3 0.82 0.57 1</diffuse>
           </material>
         </visual>
         <velocity_decay>
@@ -122,14 +202,55 @@
       </link>
     </model>
     <model name="sphere_s_2">
-      <pose>0.263 0.267 1.05 0 0 2.06</pose>
+      <pose>0.441 -0.134 1.05 0 0 0.62</pose>
       <link name="sphere_s_2_link">
+        <inertial>
+          <mass>0.05</mass>
+          <inertia>
+            <ixx>2.04e-7</ixx>
+            <iyy>2.04e-7</iyy>
+            <izz>3.9e-8</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
         <collision name="sphere_s_2_collision">
           <geometry>
             <sphere>
               <radius>0.0125</radius>
             </sphere>
           </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.8</mu>
+                <mu2>0.8</mu2>
+                <fdir1>0 0 1</fdir1>
+                <slip1>0.001</slip1>
+                <slip2>0.001</slip2>
+              </ode>
+              <torsional>
+                <coefficient>0.1</coefficient>
+                <surface_radius>0.015</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e5</kp>
+                <kd>10</kd>
+                <max_vel>0.1</max_vel>
+                <min_depth>0.001</min_depth>
+                <soft_cfm>0.01</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+              </ode>
+            </contact>
+            <bounce>
+              <restitution_coefficient>0.2</restitution_coefficient>
+              <threshold>0.01</threshold>
+            </bounce>
+          </surface>
         </collision>
         <visual name="sphere_s_2_visual">
           <geometry>
@@ -138,8 +259,8 @@
             </sphere>
           </geometry>
           <material>
-            <ambient>0.74 0.27 0.94 1</ambient>
-            <diffuse>0.74 0.27 0.94 1</diffuse>
+            <ambient>0.19 0.96 0.14 1</ambient>
+            <diffuse>0.19 0.96 0.14 1</diffuse>
           </material>
         </visual>
         <velocity_decay>
@@ -148,27 +269,68 @@
         </velocity_decay>
       </link>
     </model>
-    <model name="cylinder_m_3">
-      <pose>0.226 0.065 1.05 0 0 2.48</pose>
-      <link name="cylinder_m_3_link">
-        <collision name="cylinder_m_3_collision">
+    <model name="cylinder_l_3">
+      <pose>0.49 0.129 1.05 0 0 0.43</pose>
+      <link name="cylinder_l_3_link">
+        <inertial>
+          <mass>0.05</mass>
+          <inertia>
+            <ixx>2.04e-7</ixx>
+            <iyy>2.04e-7</iyy>
+            <izz>3.9e-8</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="cylinder_l_3_collision">
           <geometry>
             <cylinder>
-              <radius>0.025</radius>
-              <length>0.025</length>
+              <radius>0.05</radius>
+              <length>0.05</length>
             </cylinder>
           </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.8</mu>
+                <mu2>0.8</mu2>
+                <fdir1>0 0 1</fdir1>
+                <slip1>0.001</slip1>
+                <slip2>0.001</slip2>
+              </ode>
+              <torsional>
+                <coefficient>0.1</coefficient>
+                <surface_radius>0.015</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e5</kp>
+                <kd>10</kd>
+                <max_vel>0.1</max_vel>
+                <min_depth>0.001</min_depth>
+                <soft_cfm>0.01</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+              </ode>
+            </contact>
+            <bounce>
+              <restitution_coefficient>0.2</restitution_coefficient>
+              <threshold>0.01</threshold>
+            </bounce>
+          </surface>
         </collision>
-        <visual name="cylinder_m_3_visual">
+        <visual name="cylinder_l_3_visual">
           <geometry>
             <cylinder>
-              <radius>0.025</radius>
-              <length>0.025</length>
+              <radius>0.05</radius>
+              <length>0.05</length>
             </cylinder>
           </geometry>
           <material>
-            <ambient>0.63 0.63 0.53 1</ambient>
-            <diffuse>0.63 0.63 0.53 1</diffuse>
+            <ambient>0.8 0.75 0.38 1</ambient>
+            <diffuse>0.8 0.75 0.38 1</diffuse>
           </material>
         </visual>
         <velocity_decay>
@@ -177,25 +339,68 @@
         </velocity_decay>
       </link>
     </model>
-    <model name="sphere_s_4">
-      <pose>0.472 -0.009 1.05 0 0 1.73</pose>
-      <link name="sphere_s_4_link">
-        <collision name="sphere_s_4_collision">
+    <model name="cylinder_l_4">
+      <pose>0.188 0.021 1.05 0 0 6.06</pose>
+      <link name="cylinder_l_4_link">
+        <inertial>
+          <mass>0.05</mass>
+          <inertia>
+            <ixx>2.04e-7</ixx>
+            <iyy>2.04e-7</iyy>
+            <izz>3.9e-8</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="cylinder_l_4_collision">
           <geometry>
-            <sphere>
-              <radius>0.0125</radius>
-            </sphere>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.05</length>
+            </cylinder>
           </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.8</mu>
+                <mu2>0.8</mu2>
+                <fdir1>0 0 1</fdir1>
+                <slip1>0.001</slip1>
+                <slip2>0.001</slip2>
+              </ode>
+              <torsional>
+                <coefficient>0.1</coefficient>
+                <surface_radius>0.015</surface_radius>
+                <use_patch_radius>true</use_patch_radius>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e5</kp>
+                <kd>10</kd>
+                <max_vel>0.1</max_vel>
+                <min_depth>0.001</min_depth>
+                <soft_cfm>0.01</soft_cfm>
+                <soft_erp>0.2</soft_erp>
+              </ode>
+            </contact>
+            <bounce>
+              <restitution_coefficient>0.2</restitution_coefficient>
+              <threshold>0.01</threshold>
+            </bounce>
+          </surface>
         </collision>
-        <visual name="sphere_s_4_visual">
+        <visual name="cylinder_l_4_visual">
           <geometry>
-            <sphere>
-              <radius>0.0125</radius>
-            </sphere>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.05</length>
+            </cylinder>
           </geometry>
           <material>
-            <ambient>0.17 0.38 0.74 1</ambient>
-            <diffuse>0.17 0.38 0.74 1</diffuse>
+            <ambient>0.81 0.64 0.57 1</ambient>
+            <diffuse>0.81 0.64 0.57 1</diffuse>
           </material>
         </visual>
         <velocity_decay>

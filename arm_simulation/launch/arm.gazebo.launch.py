@@ -22,7 +22,7 @@ def generate_launch_description():
         sim_pkg_path,
         'worlds',
         'dataset_worlds',
-        'world_0.sdf'
+        'world_1.sdf'
     )
 
     # # world path

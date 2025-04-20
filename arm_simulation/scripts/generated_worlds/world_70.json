@@ -1,41 +1,41 @@
 [
   {
-    "name": "cylinder_m_0",
-    "type": "cylinder_m",
+    "name": "cube_m_0",
+    "type": "cube_m",
     "position": {
-      "x": 0.436,
-      "y": 0.053,
+      "x": 0.435,
+      "y": 0.17,
       "z": 1.05
     },
     "rotation": {
       "roll": 0.0,
       "pitch": 0.0,
-      "yaw": 5.92
+      "yaw": 0.21
     },
     "color": {
-      "r": 0.7,
-      "g": 0.17,
-      "b": 0.64,
+      "r": 0.71,
+      "g": 0.53,
+      "b": 0.71,
       "a": 1.0
     }
   },
   {
-    "name": "sphere_m_1",
-    "type": "sphere_m",
+    "name": "cylinder_m_1",
+    "type": "cylinder_m",
     "position": {
-      "x": 0.461,
-      "y": -0.278,
+      "x": 0.227,
+      "y": 0.159,
       "z": 1.05
     },
     "rotation": {
       "roll": 0.0,
       "pitch": 0.0,
-      "yaw": 4.38
+      "yaw": 2.33
     },
     "color": {
-      "r": 0.96,
-      "g": 0.62,
-      "b": 0.8,
+      "r": 0.92,
+      "g": 0.11,
+      "b": 0.34,
       "a": 1.0
     }
   },
@@ -43,59 +43,59 @@
     "name": "cylinder_s_2",
     "type": "cylinder_s",
     "position": {
-      "x": 0.259,
-      "y": -0.295,
+      "x": 0.335,
+      "y": -0.235,
       "z": 1.05
     },
     "rotation": {
       "roll": 0.0,
       "pitch": 0.0,
-      "yaw": 4.25
+      "yaw": 0.78
     },
     "color": {
-      "r": 0.32,
-      "g": 0.25,
-      "b": 0.22,
+      "r": 0.53,
+      "g": 0.56,
+      "b": 0.24,
       "a": 1.0
     }
   },
   {
-    "name": "sphere_m_3",
-    "type": "sphere_m",
+    "name": "cylinder_l_3",
+    "type": "cylinder_l",
     "position": {
-      "x": 0.351,
-      "y": 0.084,
+      "x": 0.13,
+      "y": -0.137,
       "z": 1.05
     },
     "rotation": {
       "roll": 0.0,
       "pitch": 0.0,
-      "yaw": 5.48
+      "yaw": 3.53
     },
     "color": {
-      "r": 0.61,
-      "g": 0.16,
-      "b": 0.18,
+      "r": 0.38,
+      "g": 0.19,
+      "b": 0.87,
       "a": 1.0
     }
   },
   {
-    "name": "cube_m_4",
-    "type": "cube_m",
+    "name": "cylinder_s_4",
+    "type": "cylinder_s",
     "position": {
-      "x": 0.483,
-      "y": 0.26,
+      "x": 0.157,
+      "y": 0.062,
       "z": 1.05
     },
     "rotation": {
       "roll": 0.0,
       "pitch": 0.0,
-      "yaw": 3.27
+      "yaw": 4.0
     },
     "color": {
-      "r": 0.3,
-      "g": 0.69,
-      "b": 0.38,
+      "r": 0.79,
+      "g": 0.99,
+      "b": 0.42,
       "a": 1.0
     }
   }
