@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arm">
     <xacro:property name="PI" value="3.14159274"/>
 
-    <!-- Import panda urdf file -->
+    <!-- Import arm urdf file -->
     <xacro:include filename="$(find arm_description)/model/arm.urdf.xacro" />
     <xacro:include filename="$(find arm_description)/model/camera/camera.xacro"/>
 
@@ -17,7 +17,7 @@
     <plugin
         filename="gz_ros2_control-system"
         name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-        <parameters>$(find panda_moveit_config)/config/ros2_controllers.yaml</parameters>
+        <parameters>$(find arm_moveit_config)/config/ros2_controllers.yaml</parameters>
     </plugin>
     <plugin
         filename="gz-sim-joint-state-publisher-system"

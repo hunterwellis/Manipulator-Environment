@@ -41,7 +41,7 @@ class JointTrajectoryPublisher(Node):
 
         self.arm_poses = []
         self.arm_poses.append([3.1415, 1.5708, -1.5708, 0.0, 0.0, 0.0])  # straight
-        self.arm_poses.append([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])  # home
+        self.arm_poses.append([0.0, 0.0, 0.0, 0.0, 0.0])  # home
 
         self.index = 0
 
