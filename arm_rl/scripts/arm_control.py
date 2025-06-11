@@ -8,7 +8,7 @@ from std_msgs.msg import Float64MultiArray
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Joy
 
-vel_msg = Twist()  # robot velocity
+vel_msg = Twist()
 mode_selection = 4 # 1:opposite phase, 2:in-phase, 3:pivot turn 4: none
 
 class Commander(Node):
@@ -116,11 +116,11 @@ class Joy_subscriber(Node):
     def listener_callback(self, data):
         global vel_msg, mode_selection
 
-        if(data.buttons[0] == 1):   # in-phase # A button of Xbox 360 controller
+        if(data.buttons[0] == 1):
             mode_selection = 2
-        elif(data.buttons[4] == 1): # opposite phase # LB button of Xbox 360 controller
+        elif(data.buttons[4] == 1):
             mode_selection = 1
-        elif(data.buttons[5] == 1): # pivot turn # RB button of Xbox 360 controller
+        elif(data.buttons[5] == 1):
             mode_selection = 3
         else:
             mode_selection = 4

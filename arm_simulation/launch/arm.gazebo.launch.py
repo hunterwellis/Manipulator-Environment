@@ -14,6 +14,7 @@ def generate_launch_description():
     desc_pkg_path = get_package_share_directory('arm_description')
     sim_pkg_path = get_package_share_directory('arm_simulation')
     ros_gz_pkg = get_package_share_directory('ros_gz_sim')
+    moveit_pkg = get_package_share_directory('arm_moveit_config')
 
     urdf_path = os.path.join(desc_pkg_path, 'model', 'arm.urdf.xacro')
 
@@ -22,7 +23,7 @@ def generate_launch_description():
         sim_pkg_path,
         'worlds',
         'dataset_worlds',
-        'world_99.sdf'
+        'world_10.sdf'
     )
 
     # # world path
@@ -49,8 +50,7 @@ def generate_launch_description():
                          'gz_sim.launch.py'
                          )
         ),
-        launch_arguments=[('gz_args', [world_file, ' -v 4', ' -r']),
-                          ('use_sim_time', 'true')]
+        launch_arguments=[('gz_args', [world_file, ' -v 4', ' -r'])]
     )
 
     # state_publisher = IncludeLaunchDescription(
@@ -100,7 +100,7 @@ def generate_launch_description():
     #     )
     # )
 
-    doc = xacro.process_file(urdf_path, mappings={'use_sim': 'true'})
+    doc = xacro.process_file(urdf_path, mappings={'use_sim': 'True'})
 
     robot_desc = doc.toprettyxml(indent='  ')
 
@@ -181,6 +181,18 @@ def generate_launch_description():
     #     output='screen'
     # )
 
+    # moveit_config_path = get_package_share_directory('arm_moveit_config')
+    #
+    # robot_description_kinematics = os.path.join(moveit_config_path, 'config', 'kinematics.yaml')
+    #
+    # moveit_group = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource(
+    #         os.path.join(moveit_pkg,
+    #                       'launch',
+    #                       'demo.launch.py')
+    #     )
+    # )
+
     return LaunchDescription([
         RegisterEventHandler(
             event_handler=OnProcessExit(
@@ -213,5 +225,6 @@ def generate_launch_description():
         bridge,
         clock_bridge,
         # rviz,
-        jsp
+        jsp,
+        # moveit_group
     ])

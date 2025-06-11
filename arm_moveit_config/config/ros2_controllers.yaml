@@ -3,18 +3,18 @@ controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
 
-    ros_arm_controller:
+    arm_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
 
-    end_effector_controller:
+    ee_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-ros_arm_controller:
+arm_controller:
   ros__parameters:
     joints:
       - J1
@@ -29,7 +29,7 @@ ros_arm_controller:
       - position
       - velocity
     allow_nonzero_velocity_at_trajectory_end: true
-end_effector_controller:
+ee_controller:
   ros__parameters:
     joints:
       - JLeft

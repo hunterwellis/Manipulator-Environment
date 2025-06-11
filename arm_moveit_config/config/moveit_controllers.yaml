@@ -4,10 +4,10 @@ moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControll
 
 moveit_simple_controller_manager:
   controller_names:
-    - ros_arm_controller
-    - end_effector_controller
+    - arm_controller
+    - ee_controller
 
-  ros_arm_controller:
+  arm_controller:
     type: FollowJointTrajectory
     joints:
       - J1
@@ -18,7 +18,7 @@ moveit_simple_controller_manager:
       - J6
     action_ns: follow_joint_trajectory
     default: true
-  end_effector_controller:
+  ee_controller:
     type: FollowJointTrajectory
     joints:
       - JLeft
